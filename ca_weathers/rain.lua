@@ -4,8 +4,8 @@ local conditions = {
 	min_height		= regional_weather.settings.min_height,
 	max_height		= regional_weather.settings.max_height,
 	min_heat			= 30,
-	min_humidity	= 40,
-	max_humidity	= 60
+	min_humidity	= 50,
+	max_humidity	= 65
 }
 
 local effects = {}

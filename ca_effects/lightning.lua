@@ -3,6 +3,8 @@ if not minetest.get_modpath("lightning") then return end
 local LIGHTNING_CHANCE = 10
 lightning.auto = false
 
+local rng = PcgRandom(82492402425)
+
 local function handle_effect(player_data)
 	for playername, data in pairs(player_data) do
 		local player = minetest.get_player_by_name(playername)

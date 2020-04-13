@@ -3,8 +3,8 @@ local name = "regional_weather:snow_heavy"
 local conditions = {
 	min_height = regional_weather.settings.min_height,
 	max_height = regional_weather.settings.max_height,
-	max_heat				= 40,
-	min_humidity		= 55
+	max_heat				= 30,
+	min_humidity		= 65
 }
 
 local effects = {}
