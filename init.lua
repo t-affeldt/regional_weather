@@ -19,14 +19,15 @@ regional_weather.settings.max_height	= get_setting_number("max_height", 120)
 regional_weather.settings.min_height	= get_setting_number("min_height", -50)
 
 -- import individual weather types
+dofile(modpath.."/ca_weathers/ambient.lua")
+dofile(modpath.."/ca_weathers/hail.lua")
+dofile(modpath.."/ca_weathers/pollen.lua")
 dofile(modpath.."/ca_weathers/rain.lua")
 dofile(modpath.."/ca_weathers/rain_heavy.lua")
+dofile(modpath.."/ca_weathers/sandstorm.lua")
 dofile(modpath.."/ca_weathers/snow.lua")
 dofile(modpath.."/ca_weathers/snow_heavy.lua")
 dofile(modpath.."/ca_weathers/storm.lua")
-dofile(modpath.."/ca_weathers/sandstorm.lua")
-dofile(modpath.."/ca_weathers/hail.lua")
-dofile(modpath.."/ca_weathers/pollen.lua")
 
 -- register environment effects
 dofile(modpath.."/ca_effects/lightning.lua")
