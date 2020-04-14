@@ -1,4 +1,4 @@
-local name = "regional_weather:wind"
+local name = "regional_weather:ambient"
 
 local CLOUD_SPEED = 1.8
 
@@ -8,7 +8,7 @@ local function generate_effects(params)
 	local override = {}
 
 	override["climate_api:clouds"] = {
-		size = climate_api.utility.rangelim(params.humidity, 0.25, 0.9),
+		size = climate_api.utility.rangelim(params.humidity / 100, 0.25, 0.98),
 		speed = vector.multiply(params.wind, CLOUD_SPEED)
 	}
 
