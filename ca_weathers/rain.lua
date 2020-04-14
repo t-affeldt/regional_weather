@@ -13,7 +13,7 @@ effects["regional_weather:spawn_puddles"] = true
 effects["regional_weather:wetten_farmland"] = true
 
 effects["climate_api:sound"] = {
-	name = "weather_rain",
+	name = "weather_rain"
 }
 
 effects["climate_api:particles"] = {

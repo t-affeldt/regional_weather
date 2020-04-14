@@ -17,5 +17,5 @@ local function remove_effect(player_data)
 end
 
 climate_api.register_effect("regional_weather:speed_buff", handle_effect, "tick")
-climate_api.register_effect("regional_weather:speed_buff", remove_effect, "end")
+climate_api.register_effect("regional_weather:speed_buff", remove_effect, "stop")
 climate_api.set_effect_cycle("regional_weather:speed_buff", climate_api.SHORT_CYCLE)

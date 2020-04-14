@@ -1,6 +1,6 @@
 if not minetest.get_modpath("lightning") then return end
 
-local LIGHTNING_CHANCE = 1
+local LIGHTNING_CHANCE = 20
 lightning.auto = false
 
 local rng = PcgRandom(82492402425)
