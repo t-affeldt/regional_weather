@@ -20,6 +20,7 @@ regional_weather.settings.min_height	= get_setting_number("min_height", -50)
 
 -- import individual weather types
 dofile(modpath.."/ca_weathers/ambient.lua")
+dofile(modpath.."/ca_weathers/deep_cave.lua")
 dofile(modpath.."/ca_weathers/hail.lua")
 dofile(modpath.."/ca_weathers/pollen.lua")
 dofile(modpath.."/ca_weathers/rain.lua")

@@ -2,15 +2,17 @@ local name = "regional_weather:ambient"
 
 local CLOUD_SPEED = 1.8
 
-local conditions = {}
+local conditions = {
+	min_light = 15
+}
 
 local function generate_effects(params)
 	local override = {}
 
-	override["climate_api:clouds"] = {
+	--[[override["climate_api:clouds"] = {
 		size = climate_api.utility.rangelim(params.humidity / 100, 0.25, 0.98),
 		speed = vector.multiply(params.wind, CLOUD_SPEED)
-	}
+	}]]
 
 	local movement = params.player:get_player_velocity()
 	local movement_direction

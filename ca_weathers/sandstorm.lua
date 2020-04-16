@@ -5,12 +5,16 @@ local conditions = {
 	max_height = regional_weather.settings.max_height,
 	min_heat				= 50,
 	max_humidity		= 25,
-	min_windspeed		= 6
+	min_windspeed		= 6,
+	min_light				= 15
 }
 
 local effects = {}
 
-effects["regional_weather:damage"] = true
+effects["climate_api:hud_overlay"] = {
+	file = "weather_hud_sand.png",
+	z_index = -100
+}
 
 effects["climate_api:particles"] = {
 	min_pos = {x=-9, y=-5, z=-9},
