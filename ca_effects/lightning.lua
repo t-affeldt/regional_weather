@@ -1,5 +1,7 @@
 if not minetest.get_modpath("lightning") then return end
 
+local EFFECT_NAME = "regional_weather:lightning"
+
 local LIGHTNING_CHANCE = 20
 lightning.auto = false
 
@@ -42,5 +44,5 @@ local function handle_effect(player_data)
 	end
 end
 
-climate_api.register_effect("regional_weather:lightning", handle_effect, "tick")
-climate_api.set_effect_cycle("regional_weather:lightning", climate_api.LONG_CYCLE)
+climate_api.register_effect(EFFECT_NAME, handle_effect, "tick")
+climate_api.set_effect_cycle(EFFECT_NAME, climate_api.LONG_CYCLE)

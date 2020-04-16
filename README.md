@@ -20,8 +20,9 @@ Experience the humid air of the rain forest and harsh desert sandstorms.
 - Wind sound: *CC BY (3.0)* by InspectorJ from https://freesound.org/people/InspectorJ/sounds/376415/
 - Hail sound: *CC0* by ikayuka from https://freesound.org/people/ikayuka/sounds/240742/
 
-### Other
-- Original ice hud overlay: *CC0* by Simon Matzinger from https://freestocktextures.com/texture/winter-snow-frozen,995.html, edits by me under *CC0* as well
+### HUD Overlays
+- Original texture for frost hud: *CC0* by Simon Matzinger from https://freestocktextures.com/texture/winter-snow-frozen,995.html, edits by me under *CC0* as well
+- Original texture for sandstorm hud: *CC0* from https://freestocktextures.com/texture/dirty-baking-paper,1202.html, edits by me under *CC0* as well
 
 ### Assets in screenshots
 - All screenshots and editing by me: *CC BY-SA (4.0)*
