@@ -10,10 +10,6 @@ local conditions = {
 
 local effects = {}
 
-effects["regional_weather:spawn_puddles"] = true
-effects["regional_weather:wetten_farmland"] = true
-effects["regional_weather:lightning"] = true
-
 effects["climate_api:sound"] = {
 	name = "weather_rain",
 	gain = 1

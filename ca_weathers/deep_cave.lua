@@ -2,7 +2,7 @@ local name = "regional_weather:deep_cave"
 
 local conditions = {
 	max_light = 14,
-	--max_height = -100
+	max_height = -100
 }
 
 local effects = {}

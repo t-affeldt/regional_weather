@@ -11,9 +11,7 @@ local conditions = {
 
 local effects = {}
 
-effects["regional_weather:spawn_puddles"] = true
-effects["regional_weather:lightning"] = true
-effects["climate_api:damage"] = 1
+effects["regional_weather:damage"] = 1
 
 effects["climate_api:sound"] = {
 	name = "weather_hail",

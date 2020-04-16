@@ -1,6 +1,7 @@
 regional_weather_damage (Storms and hail cause damage to players) bool true
 regional_weather_snow_layers (Place snow layers on ground) bool true
 regional_weather_puddles (Place rain puddles on ground) bool true
-regional_weather_soil (Soil turns wet during rain) bool true
+regional_weather_soil (Turn farmland wet during rain) bool true
+regional_weather_fire (Extinguish fire during rain) bool true
 regional_weather_max_height (Maximum height of weather effects) int 120
 regional_weather_min_height (Minimum height of weather effects) int -50

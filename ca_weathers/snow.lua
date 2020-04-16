@@ -11,8 +11,6 @@ local conditions = {
 
 local effects = {}
 
-effects["regional_weather:spawn_snow"] = true
-
 effects["climate_api:particles"] = {
 	min_pos = {x=-20, y= 3, z=-20},
 	max_pos = {x= 20, y=12, z= 20},
