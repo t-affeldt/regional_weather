@@ -6,7 +6,7 @@ local conditions = {
 	max_heat				= 45,
 	min_humidity		= 65,
 	min_windspeed		= 2.5,
-	min_daylight		= 15
+	daylight				= 15
 }
 
 local effects = {}

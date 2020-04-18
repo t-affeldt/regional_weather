@@ -6,6 +6,7 @@
 local BLOCK_PREFIX = "regional_weather:snow_cover_"
 
 if not minetest.get_modpath("default")
+or default.node_sound_snow_defaults == nil
 or not regional_weather.settings.snow then
 	for i = 1,5 do
 		minetest.register_alias(BLOCK_PREFIX .. i, "air")
@@ -41,6 +42,12 @@ for i = 1,5 do
 			if minetest.get_node(pos).name == "default:dirt_with_grass" then
 				minetest.set_node(pos, {name = "default:dirt_with_snow"})
 			end
+		end,
+		on_destruct = function(pos)
+			pos.y = pos.y - 1
+			if minetest.get_node(pos).name == "default:dirt_with_snow" then
+				minetest.set_node(pos, {name = "default:dirt_with_grass"})
+			end
 		end
 	})
 end
@@ -63,7 +70,7 @@ climate_api.register_abm({
 		 max_height		= regional_weather.settings.max_height,
 		 min_humidity	= 55,
 		 max_heat			= 30,
-		 min_light		= 15
+		 daylight			= 15
 	 },
 
 	 pos_override = function(pos)
@@ -87,7 +94,6 @@ climate_api.register_abm({
 		"group:flora",
 		"group:grass",
 		"group:plant",
-		"group:replaceable_by_snow",
 		"group:regional_weather_snow_cover"
 	},
 	interval	= 15,
@@ -98,7 +104,7 @@ climate_api.register_abm({
 		 max_height		= regional_weather.settings.max_height,
 		 min_humidity	= 55,
 		 max_heat			= 30,
-		 min_light		= 15
+		 daylight			= 15
 	 },
 
    action = function (pos, node, env)
@@ -118,9 +124,7 @@ climate_api.register_abm({
 	chance		= 10,
 
 	 conditions	= {
-		 min_height		= regional_weather.settings.min_height,
-		 max_height		= regional_weather.settings.max_height,
-		 min_heat			= 30
+		 min_heat = 30
 	 },
 
    action = function (pos, node, env)

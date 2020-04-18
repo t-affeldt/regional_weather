@@ -45,3 +45,5 @@ dofile(modpath .. "/abms/puddle.lua")
 dofile(modpath .. "/abms/snow_cover.lua")
 dofile(modpath .. "/abms/fire.lua")
 dofile(modpath .. "/abms/soil.lua")
+
+minetest.log(minetest.LIGHT_MAX)

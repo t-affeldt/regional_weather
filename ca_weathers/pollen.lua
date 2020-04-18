@@ -7,7 +7,28 @@ local conditions = {
 	min_humidity		= 30,
 	max_humidity		= 40,
 	max_windspeed		= 2,
-	min_daylight		= 15
+	daylight				= 15,
+	has_biome				= {
+		"default",
+		"deciduous_forest",
+		"deciduous_forest_ocean",
+		"deciduous_forest_shore",
+		"grassland",
+		"grassland_dunes",
+		"grassland_ocean",
+		"snowy_grassland",
+		"snowy_grassland_ocean",
+		"grassy",
+		"grassy_ocean",
+		"grassytwo",
+		"grassytwo_ocean",
+		"mushroom",
+		"mushroom_ocean",
+		"plains",
+		"plains_ocean",
+		"sakura",
+		"sakura_ocean"
+	}
 }
 
 local effects = {}

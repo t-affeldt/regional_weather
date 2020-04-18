@@ -6,11 +6,14 @@ local conditions = {
 	min_heat				= 50,
 	max_humidity		= 25,
 	min_windspeed		= 6,
-	min_daylight		= 15,
+	daylight				= 15,
 	has_biome				= {
+		"cold_desert",
+		"cold_desert_ocean",
 		"desert",
+		"desert_ocean",
 		"sandstone_desert",
-		"cold_desert"
+		"sandstone_desert_ocean"
 	}
 }
 

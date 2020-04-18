@@ -37,7 +37,7 @@ minetest.register_node(BLOCK_NAME, {
 		crumbly = 3,
 		attached_node = 1,
 		slippery = 1,
-		replaceable_by_snow = 1
+		flora = 1
 	},
 	drop = "",
 })
@@ -55,7 +55,7 @@ climate_api.register_abm({
 		 max_height		= regional_weather.settings.max_height,
 		 min_humidity	= 55,
 		 min_heat			= 30,
-		 min_light		= 15
+		 daylight			= 15
 	 },
 
 	 pos_override = function(pos)

@@ -2,20 +2,36 @@ local name = "regional_weather:ambient"
 
 local CLOUD_SPEED = 1.8
 
-local conditions = {
-	min_daylight = 15
-}
+local conditions = {}
 
 local function generate_effects(params)
 	local override = {}
 	local wind = climate_api.environment.get_wind()
 
-	override["climate_api:skybox"] = {
-		cloud_data = {
-			size = climate_api.utility.rangelim(params.humidity / 100, 0.25, 0.98),
-			speed = vector.multiply(wind, CLOUD_SPEED)
-		}
+	local skybox = {}
+	skybox.cloud_data = {
+		size = climate_api.utility.rangelim(params.humidity / 100, 0.25, 0.98),
+		speed = vector.multiply(wind, CLOUD_SPEED),
+		thickness = climate_api.utility.rangelim(params.base_humidity * 0.2, 1, 18)
 	}
+
+	if params.height > -100 and params.humidity > 65 then
+		skybox.sky_data = {
+			type = "regular",
+			--base_color = { r = 106, g = 130, b = 142 },
+			clouds = true,
+			sky_color = {
+				day_sky = "#6a828e",
+				day_horizon = "#5c7a8a",
+				dawn_sky = "#b2b5d7",
+				dawn_horizon = "#b7bce1",
+				night_sky = "#2373e1",
+				night_horizon = "#315d9b"
+			}
+		}
+	end
+
+	override["climate_api:skybox"] = skybox
 
 	local movement = params.player:get_player_velocity()
 	local movement_direction

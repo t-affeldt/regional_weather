@@ -1,8 +1,8 @@
 local name = "regional_weather:deep_cave"
 
 local conditions = {
-	max_daylight = 14,
-	max_height = -100
+	max_daylight	= minetest.LIGHT_MAX,
+	max_height		= -100
 }
 
 local effects = {}
@@ -12,7 +12,10 @@ effects["climate_api:skybox"] = {
 		base_color = { r = 0, g = 0, b = 0 },
 		clouds = false
 	},
-	sun_data = { visible = false },
+	sun_data = {
+		visible = false,
+		sunrise_visible = false
+	},
 	moon_data = { visible = false },
 	stars_data = { visible = false }
 }

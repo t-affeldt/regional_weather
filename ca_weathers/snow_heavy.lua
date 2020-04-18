@@ -5,7 +5,7 @@ local conditions = {
 	max_height = regional_weather.settings.max_height,
 	max_heat				= 30,
 	min_humidity		= 65,
-	min_daylight		= 15
+	daylight				= 15
 }
 
 local effects = {}
@@ -21,14 +21,6 @@ effects["climate_api:particles"] = {
 	exptime=6,
 	size=12,
 	texture="weather_snow.png"
-}
-
-effects["climate_api:skybox"] = {
-	sky_data = {
-		type = "plain",
-		base_color = {r=106, g=130, b=142},
-		clouds = true
-	}
 }
 
 local function generate_effects(params)

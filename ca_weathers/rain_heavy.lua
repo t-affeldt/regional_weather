@@ -5,7 +5,7 @@ local conditions = {
 	max_height		= regional_weather.settings.max_height,
 	min_heat			= 40,
 	min_humidity	= 65,
-	min_daylight	= 15
+	daylight			= 15
 }
 
 local effects = {}
@@ -13,14 +13,6 @@ local effects = {}
 effects["climate_api:sound"] = {
 	name = "weather_rain",
 	gain = 1
-}
-
-effects["climate_api:skybox"] = {
-	sky_data = {
-		type = "plain",
-		base_color = {r = 125, g = 142, b = 145},
-		clouds = true
-	}
 }
 
 effects["climate_api:particles"] = {
