@@ -5,7 +5,8 @@
 
 local BLOCK_PREFIX = "regional_weather:snow_cover_"
 
-if not regional_weather.settings.puddles then
+if not minetest.get_modpath("default")
+or not regional_weather.settings.snow then
 	for i = 1,5 do
 		minetest.register_alias(BLOCK_PREFIX .. i, "air")
 	end

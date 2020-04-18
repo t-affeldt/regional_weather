@@ -6,7 +6,14 @@ local conditions = {
 	min_heat				= 50,
 	max_humidity		= 25,
 	min_windspeed		= 6,
-	min_light				= 15
+	min_daylight		= 15,
+	has_biome				= {
+		"desert",
+		"sandstone_desert",
+		"cold_desert",
+		"grassland_dunes",
+		"coniferous_forest_dunes"
+	}
 }
 
 local effects = {}

@@ -4,7 +4,7 @@ local conditions = {
 	min_height 		= regional_weather.settings.min_height,
 	max_height 		= regional_weather.settings.max_height,
 	min_windspeed	= 3,
-	min_light			= 15
+	min_daylight	= 15
 }
 
 local effects = {}
