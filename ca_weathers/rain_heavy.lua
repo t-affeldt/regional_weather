@@ -15,6 +15,14 @@ effects["climate_api:sound"] = {
 	gain = 1
 }
 
+effects["climate_api:skybox"] = {
+	sky_data = {
+		type = "plain",
+		base_color = {r = 125, g = 142, b = 145},
+		clouds = true
+	}
+}
+
 effects["climate_api:particles"] = {
 	min_pos = {x=-9, y=7, z=-9},
 	max_pos = {x= 9, y=7, z= 9},

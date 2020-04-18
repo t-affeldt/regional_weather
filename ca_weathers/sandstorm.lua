@@ -10,9 +10,7 @@ local conditions = {
 	has_biome				= {
 		"desert",
 		"sandstone_desert",
-		"cold_desert",
-		"grassland_dunes",
-		"coniferous_forest_dunes"
+		"cold_desert"
 	}
 }
 

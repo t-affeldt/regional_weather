@@ -8,7 +8,7 @@ local conditions = {
 
 local function generate_effects(params)
 	local override = {}
-	local wind = vector.new(params.wind_x, 0, params.wind_z)
+	local wind = climate_api.environment.get_wind()
 
 	override["climate_api:skybox"] = {
 		cloud_data = {

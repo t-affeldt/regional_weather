@@ -28,10 +28,6 @@ effects["climate_api:skybox"] = {
 		type = "plain",
 		base_color = {r=106, g=130, b=142},
 		clouds = true
-	},
-	cloud_data = {
-		size = 0.98,
-		speed = {x = 4, y = 0, z = -1.3}
 	}
 }
 

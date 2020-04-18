@@ -1,7 +1,7 @@
 local EFFECT_NAME = "regional_weather:speed_buff"
 
 local function handle_effect(player_data)
-	for playername, data in ipairs(player_data) do
+	for playername, data in pairs(player_data) do
 		local player = minetest.get_player_by_name(playername)
 		local product = 1
 		for weather, value in pairs(data) do
