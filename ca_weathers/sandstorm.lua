@@ -5,8 +5,7 @@ local conditions = {
 	max_height = regional_weather.settings.max_height,
 	min_heat				= 50,
 	max_humidity		= 25,
-	min_windspeed		= 6,
-	daylight				= 15,
+	min_windspeed		= 4.5,
 	has_biome				= {
 		"cold_desert",
 		"cold_desert_ocean",
@@ -24,14 +23,48 @@ effects["climate_api:hud_overlay"] = {
 	z_index = -100
 }
 
-effects["climate_api:particles"] = {
-	min_pos = {x=-9, y=-5, z=-9},
-	max_pos = {x= 9, y= 5, z= 9},
-	falling_speed=1,
-	amount=40,
-	exptime=0.8,
-	size=15,
-	texture="weather_sand.png"
+effects["regional_weather:damage"] = {
+	chance = 3,
+	value = 1
 }
 
-climate_api.register_weather(name, conditions, effects)
+effects["climate_api:particles"] = {
+	min_pos = {x=-5, y=-4, z=-5},
+	max_pos = {x= 5, y= 4.5, z= 5},
+	falling_speed=1.2,
+	acceleration={x=0,y=0.8,z=0},
+	amount=40,
+	exptime=1.8,
+	size=20,
+	textures={
+		"weather_sandstorm.png",
+		"weather_sandstorm.png^[transformR180"
+	}
+}
+
+effects["climate_api:skybox"] = {
+	cloud_data = {
+		density = 1,
+		color = "#f7e4bfc0",
+		thickness = 40,
+		speed = {x=0,y=0,z=0}
+	},
+	priority = 60
+}
+
+local function generate_effects(params)
+	local override = table.copy(effects)
+	override["climate_api:skybox"] = {
+		cloud_data= {
+			height = params.player:get_pos().y
+		}
+	}
+	if params.daylight < 15 then
+		local result = {}
+		result["climate_api:skybox"] = override["climate_api:skybox"]
+		return result
+	end
+	return override
+end
+
+climate_api.register_weather(name, conditions, generate_effects)

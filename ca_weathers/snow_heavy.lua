@@ -19,7 +19,7 @@ effects["climate_api:particles"] = {
 	min_pos = {x=-8, y=3, z=-8},
 	max_pos = {x= 8, y=6, z= 8},
 	exptime=6,
-	size=12,
+	size=10,
 	texture="weather_snow.png"
 }
 
@@ -28,12 +28,8 @@ local function generate_effects(params)
 	local intensity = params.humidity / avg_humidity
 	local override = {}
 
-	override["climate_api:sound"] = {
-		gain = math.min(intensity, 1.2)
-	}
-
 	override["climate_api:particles"] = {
-		amount = 8 * math.min(intensity, 1.5),
+		amount = 16 * math.min(intensity, 1.5),
 		falling_speed = 1 / math.min(intensity, 1.3)
 	}
 

@@ -14,6 +14,13 @@ or not regional_weather.settings.snow then
 	return
 end
 
+local destruction_handler = function(pos)
+	pos.y = pos.y - 1
+	if minetest.get_node(pos).name == "default:dirt_with_snow" then
+		minetest.set_node(pos, {name = "default:dirt_with_grass"})
+	end
+end
+
 for i = 1,5 do
 	local node_box = {
 		type  = "fixed",
@@ -43,12 +50,8 @@ for i = 1,5 do
 				minetest.set_node(pos, {name = "default:dirt_with_snow"})
 			end
 		end,
-		on_destruct = function(pos)
-			pos.y = pos.y - 1
-			if minetest.get_node(pos).name == "default:dirt_with_snow" then
-				minetest.set_node(pos, {name = "default:dirt_with_grass"})
-			end
-		end
+		on_destruct = destruction_handler,
+		on_flood = destruction_handler
 	})
 end
 

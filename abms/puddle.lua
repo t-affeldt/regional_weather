@@ -11,14 +11,9 @@ if not regional_weather.settings.puddles then
 	return
 end
 
---Puddle node
 local node_box = {
 	type  = "fixed",
-	fixed = {
-		{-0.1875, -0.5, -0.375, 0.125, -0.4875, 0.3125},
-		{-0.25, -0.5, -0.3125, 0.3125, -0.4925, 0.25},
-		{-0.3125, -0.5, -0.1875, 0.375, -0.4975, 0.1875},
-	}
+	fixed = {-0.5, -0.5, -0.5, 0.5, -0.49, 0.5}
 }
 
 minetest.register_node(BLOCK_NAME, {
@@ -30,14 +25,15 @@ minetest.register_node(BLOCK_NAME, {
 	walkable = false,
 	sunlight_propagates = true,
 	paramtype = "light",
-	alpha = 50,
+	use_texture_alpha = true,
 	node_box = node_box,
 	groups = {
 		not_in_creative_inventory = 1,
 		crumbly = 3,
 		attached_node = 1,
 		slippery = 1,
-		flora = 1
+		flora = 1,
+		water = 1
 	},
 	drop = "",
 })

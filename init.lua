@@ -20,12 +20,21 @@ regional_weather.settings.snow				= get_setting_bool("snow_layers", true)
 regional_weather.settings.puddles			= get_setting_bool("puddles", true)
 regional_weather.settings.soil				= get_setting_bool("soil", true)
 regional_weather.settings.fire				= get_setting_bool("fire", true)
+regional_weather.settings.ice					= get_setting_bool("ice", true)
 regional_weather.settings.max_height	= get_setting_number("max_height", 120)
 regional_weather.settings.min_height	= get_setting_number("min_height", -50)
+
+-- warn about clouds being overriden by MTG weather
+if climate_mod.settings.skybox
+and minetest.get_modpath("weather")
+and get_setting_bool("enable_weather", true) then
+	minetest.log("warning", "[Regional Weather] Disable MTG weather for the best experience")
+end
 
 -- import individual weather types
 dofile(modpath.."/ca_weathers/ambient.lua")
 dofile(modpath.."/ca_weathers/deep_cave.lua")
+--dofile(modpath.."/ca_weathers/fog.lua")
 dofile(modpath.."/ca_weathers/hail.lua")
 dofile(modpath.."/ca_weathers/pollen.lua")
 dofile(modpath.."/ca_weathers/rain.lua")
@@ -44,6 +53,5 @@ dofile(modpath.."/ca_effects/speed_buff.lua")
 dofile(modpath .. "/abms/puddle.lua")
 dofile(modpath .. "/abms/snow_cover.lua")
 dofile(modpath .. "/abms/fire.lua")
+dofile(modpath .. "/abms/ice.lua")
 dofile(modpath .. "/abms/soil.lua")
-
-minetest.log(minetest.LIGHT_MAX)

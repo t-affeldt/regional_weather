@@ -12,14 +12,15 @@ local conditions = {
 local effects = {}
 
 effects["climate_api:sound"] = {
-	name = "weather_rain"
+	name = "weather_rain",
+	gain = 1.5
 }
 
 effects["climate_api:particles"] = {
 	min_pos = {x=-9, y=7, z=-9},
 	max_pos = {x= 9, y=7, z= 9},
 	exptime=0.8,
-	size=1,
+	size=2,
 	texture = "weather_raindrop.png"
 }
 
@@ -33,7 +34,7 @@ local function generate_effects(params)
 	}
 
 	override["climate_api:particles"] = {
-		amount = 20 * math.min(intensity, 1.5),
+		amount = 25 * math.min(intensity, 1.5),
 		falling_speed = 10 / math.min(intensity, 1.3)
 	}
 

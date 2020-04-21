@@ -17,7 +17,8 @@ effects["climate_api:skybox"] = {
 		sunrise_visible = false
 	},
 	moon_data = { visible = false },
-	stars_data = { visible = false }
+	star_data = { visible = false },
+	priority = 100
 }
 
 climate_api.register_weather(name, conditions, effects)

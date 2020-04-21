@@ -11,7 +11,10 @@ local conditions = {
 
 local effects = {}
 
-effects["regional_weather:damage"] = 1
+effects["regional_weather:damage"] = {
+	chance = 15,
+	value = 3
+}
 
 effects["climate_api:sound"] = {
 	name = "weather_hail",
@@ -21,9 +24,9 @@ effects["climate_api:sound"] = {
 effects["climate_api:particles"] = {
 	min_pos = {x=-9, y=7, z=-9},
 	max_pos = {x= 9, y=7, z= 9},
-	falling_speed=15,
-	amount=5,
-	exptime=0.8,
+	falling_speed=20,
+	amount=6,
+	exptime=0.7,
 	size=1,
 	textures = {}
 }
