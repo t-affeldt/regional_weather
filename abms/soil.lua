@@ -7,6 +7,7 @@ if farming ~= nil and farming.mod == "redo" then
 		nodenames = { "farming:soil" },
 		interval	= 8,
 		chance		= 2,
+		catch_up	= false,
 
 		 conditions	= {
 			 min_height		= regional_weather.settings.min_height,
@@ -27,6 +28,7 @@ else
 		nodenames = { "group:field" },
 		interval	= 8,
 		chance		= 2,
+		catch_up	= false,
 
 		 conditions	= {
 			 min_height		= regional_weather.settings.min_height,

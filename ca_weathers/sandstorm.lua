@@ -43,6 +43,11 @@ effects["climate_api:particles"] = {
 }
 
 effects["climate_api:skybox"] = {
+	sky_data = {
+		type = "plain",
+		base_color = "#f7e4bfff",
+		clouds = true,
+	},
 	cloud_data = {
 		density = 1,
 		color = "#f7e4bfc0",
@@ -53,12 +58,13 @@ effects["climate_api:skybox"] = {
 }
 
 local function generate_effects(params)
-	local override = table.copy(effects)
+	local override = {}
 	override["climate_api:skybox"] = {
 		cloud_data= {
-			height = params.player:get_pos().y
+			height = params.player:get_pos().y - 20
 		}
 	}
+	override = climate_api.utility.merge_tables(effects, override)
 	if params.daylight < 15 then
 		local result = {}
 		result["climate_api:skybox"] = override["climate_api:skybox"]

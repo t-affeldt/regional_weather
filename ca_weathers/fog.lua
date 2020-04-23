@@ -1,20 +1,24 @@
 local name = "regional_weather:fog"
 
 local conditions = {
-
+	min_height = regional_weather.settings.min_height,
+	max_height = regional_weather.settings.max_height,
+	min_humidity = 40,
+	max_humidity = 50,
+	max_windspeed = 2,
+	min_heat = 40,
+	max_heat = 50
 }
 
 local effects = {}
 
-effects["climate_api:hud_overlay"] = {
-	file = "weather_hud_fog.png",
-	z_index = -200
-}
-
 effects["climate_api:skybox"] = {
+	sky_data = {
+		clouds = true
+	},
 	cloud_data = {
 		density = 1,
-		color = "#ffffffff",
+		color = "#ffffff00",
 		thickness = 40,
 		speed = {x=0,y=0,z=0}
 	},
@@ -25,7 +29,7 @@ local function generate_effects(params)
 	local override = {}
 	override["climate_api:skybox"] = {
 		cloud_data = {
-			height = params.player:get_pos().y
+			height = params.player:get_pos().y - 20
 		}
 	}
 	return climate_api.utility.merge_tables(effects, override)

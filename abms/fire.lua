@@ -6,6 +6,7 @@ climate_api.register_abm({
 	nodenames = { "fire:basic_flame" },
 	interval	= 10,
 	chance		= 2,
+	catch_up	= false,
 
 	 conditions	= {
 		 min_height		= regional_weather.settings.min_height,

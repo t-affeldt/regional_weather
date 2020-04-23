@@ -7,9 +7,9 @@ local function generate_effects(params)
 	local override = {}
 	local wind = climate_api.environment.get_wind()
 
-	local skybox = {priority = 0}
+	local skybox = {priority = 10}
 	skybox.cloud_data = {
-		density = climate_api.utility.rangelim(params.humidity / 100, 0.25, 0.98),
+		density = climate_api.utility.rangelim(params.humidity / 100, 0.25, 0.75),
 		speed = vector.multiply(wind, CLOUD_SPEED),
 		thickness = climate_api.utility.rangelim(params.base_humidity * 0.2, 1, 18)
 	}
@@ -29,7 +29,7 @@ local function generate_effects(params)
 		}
 	end
 
-	--override["climate_api:skybox"] = skybox
+	override["climate_api:skybox"] = skybox
 
 	local movement = params.player:get_player_velocity()
 	local movement_direction

@@ -34,7 +34,8 @@ end
 -- import individual weather types
 dofile(modpath.."/ca_weathers/ambient.lua")
 dofile(modpath.."/ca_weathers/deep_cave.lua")
---dofile(modpath.."/ca_weathers/fog.lua")
+dofile(modpath.."/ca_weathers/fog.lua")
+dofile(modpath.."/ca_weathers/fog_heavy.lua")
 dofile(modpath.."/ca_weathers/hail.lua")
 dofile(modpath.."/ca_weathers/pollen.lua")
 dofile(modpath.."/ca_weathers/rain.lua")

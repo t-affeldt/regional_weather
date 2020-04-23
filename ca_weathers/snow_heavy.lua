@@ -11,7 +11,7 @@ local conditions = {
 local effects = {}
 
 effects["climate_api:hud_overlay"] = {
-	file = "weather_hud_ice.png",
+	file = "weather_hud_frost.png",
 	z_index = -100
 }
 

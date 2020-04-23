@@ -1,8 +1,3 @@
--- code of this file is partially taken from and otherwise inspired by
--- mymonths on https://github.com/minetest-mods/mymonths (licensed under DWYWPL)
--- contributers available at https://github.com/minetest-mods/mymonths/graphs/contributors
--- all changes of mine remain under LGPL v3
-
 local BLOCK_PREFIX = "regional_weather:snow_cover_"
 
 if not minetest.get_modpath("default")
@@ -66,7 +61,8 @@ climate_api.register_abm({
 	},
 	neighbors	= { "air" },
 	interval	= 15,
-	chance		= 20,
+	chance		= 30,
+	catch_up	= false,
 
 	 conditions	= {
 		 min_height		= regional_weather.settings.min_height,
@@ -100,7 +96,8 @@ climate_api.register_abm({
 		"group:regional_weather_snow_cover"
 	},
 	interval	= 15,
-	chance		= 15,
+	chance		= 25,
+	catch_up	= false,
 
 	 conditions	= {
 		 min_height		= regional_weather.settings.min_height,
@@ -125,6 +122,7 @@ climate_api.register_abm({
 	nodenames	= { "group:regional_weather_snow_cover" },
 	interval	= 15,
 	chance		= 10,
+	catch_up	= true,
 
 	 conditions	= {
 		 min_heat = 30
