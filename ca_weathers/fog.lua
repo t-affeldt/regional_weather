@@ -18,7 +18,7 @@ effects["climate_api:skybox"] = {
 	},
 	cloud_data = {
 		density = 1,
-		color = "#ffffff00",
+		color = "#ffffff80",
 		thickness = 40,
 		speed = {x=0,y=0,z=0}
 	},

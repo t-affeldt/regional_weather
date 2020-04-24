@@ -52,6 +52,12 @@ for i = 1,VARIANT_COUNT do
 					regional_weather_puddle = 1
 				},
 				drop = "",
+				sounds = {
+					footstep = {
+						name = "weather_puddle",
+						gain = 0.8
+					}
+				}
 			})
 		end
 	end

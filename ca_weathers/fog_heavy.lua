@@ -14,7 +14,8 @@ local effects = {}
 
 effects["climate_api:hud_overlay"] = {
 	file = "weather_hud_fog.png^[opacity:100",
-	z_index = -200
+	z_index = -200,
+	color_correction = true
 }
 
 effects["climate_api:skybox"] = {

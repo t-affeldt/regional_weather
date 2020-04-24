@@ -20,7 +20,8 @@ local effects = {}
 
 effects["climate_api:hud_overlay"] = {
 	file = "weather_hud_sand.png",
-	z_index = -100
+	z_index = -100,
+	color_correction = true
 }
 
 effects["regional_weather:damage"] = {
@@ -45,7 +46,6 @@ effects["climate_api:particles"] = {
 effects["climate_api:skybox"] = {
 	sky_data = {
 		type = "plain",
-		base_color = "#f7e4bfff",
 		clouds = true,
 	},
 	cloud_data = {
@@ -59,8 +59,13 @@ effects["climate_api:skybox"] = {
 
 local function generate_effects(params)
 	local override = {}
+	local light = math.max(params.light / 15, 0.2)
+	local color = {r = 247 * light, g = 228 * light, b = 191 * light, a = 256}
 	override["climate_api:skybox"] = {
-		cloud_data= {
+		sky_data = {
+			base_color = color
+		},
+		cloud_data = {
 			height = params.player:get_pos().y - 20
 		}
 	}
