@@ -60,8 +60,8 @@ climate_api.register_abm({
 		"group:coverable_by_snow"
 	},
 	neighbors	= { "air" },
-	interval	= 15,
-	chance		= 30,
+	interval	= 25,
+	chance		= 40,
 	catch_up	= false,
 
 	 conditions	= {
@@ -95,8 +95,9 @@ climate_api.register_abm({
 		"group:plant",
 		"group:regional_weather_snow_cover"
 	},
-	interval	= 15,
-	chance		= 25,
+	neighbors	= { "air" },
+	interval	= 25,
+	chance		= 30,
 	catch_up	= false,
 
 	 conditions	= {
@@ -120,7 +121,7 @@ climate_api.register_abm({
 climate_api.register_abm({
 	label			= "melt snow covers",
 	nodenames	= { "group:regional_weather_snow_cover" },
-	interval	= 15,
+	interval	= 25,
 	chance		= 10,
 	catch_up	= true,
 

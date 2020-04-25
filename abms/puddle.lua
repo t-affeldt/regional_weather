@@ -1,6 +1,6 @@
 local BLOCK_PREFIX = "regional_weather:puddle_"
-local VARIANT_COUNT = 30
-local MIN_DISTANCE = 2
+local VARIANT_COUNT = 39
+local MIN_DISTANCE = 4
 
 if not regional_weather.settings.puddles then
 	for i=1,VARIANT_COUNT do
@@ -20,7 +20,9 @@ for i = 1,VARIANT_COUNT do
 	for rotation = 0,270,90 do
 		for flip = 0,1 do
 			local name = BLOCK_PREFIX .. i .. "_" .. rotation
-			local texture = "weather_puddle." .. i .. ".png^[opacity:128"
+			local index = i
+			if i < 10 then index = "0" .. i end
+			local texture = "weather_puddle_" .. index .. ".png^[opacity:128"
 			if flip == 1 or rotation > 0 then
 				texture = texture .. "^[transform"
 			end
@@ -81,7 +83,7 @@ climate_api.register_abm({
 	label			= "create rain puddles",
 	nodenames	= { "group:soil", "group:stone" },
 	neighbors	= { "air" },
-	interval	= 10,
+	interval	= 15,
 	chance		= 50,
 	catch_up	= false,
 
@@ -109,8 +111,8 @@ climate_api.register_abm({
 climate_api.register_abm({
 	label = "remove rain puddles",
 	nodenames	= { "group:regional_weather_puddle" },
-	interval	= 5,
-	chance		= 5,
+	interval	= 10,
+	chance		= 3,
 	catch_up	= true,
 
 	action = function (pos, node, env)

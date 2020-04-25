@@ -4,6 +4,7 @@ if not minetest.get_modpath("fire") then return end
 climate_api.register_abm({
 	label			= "extinguish fire at high humidity",
 	nodenames = { "fire:basic_flame" },
+	neighbors	= { "air" },
 	interval	= 10,
 	chance		= 2,
 	catch_up	= false,

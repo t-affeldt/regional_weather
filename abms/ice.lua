@@ -25,8 +25,8 @@ climate_api.register_abm({
 	label			= "freeze river water",
 	nodenames = { "default:river_water_source" },
 	neighbors	= { "air" },
-	interval	= 10,
-	chance		= 2,
+	interval	= 25,
+	chance		= 3,
 	catch_up	= false,
 
 	 conditions	= {
@@ -44,8 +44,7 @@ climate_api.register_abm({
 climate_api.register_abm({
 	label			= "unfreeze river water",
 	nodenames = { BLOCK_NAME },
-	neighbors	= { "air" },
-	interval	= 15,
+	interval	= 25,
 	chance		= 4,
 	catch_up	= true,
 

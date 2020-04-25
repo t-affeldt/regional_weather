@@ -3,7 +3,7 @@ local name = "regional_weather:rain"
 local conditions = {
 	min_height		= regional_weather.settings.min_height,
 	max_height		= regional_weather.settings.max_height,
-	min_heat			= 30,
+	min_heat			= 35,
 	min_humidity	= 50,
 	max_humidity	= 65,
 	daylight			= 15
@@ -17,28 +17,14 @@ effects["climate_api:sound"] = {
 }
 
 effects["climate_api:particles"] = {
-	min_pos = {x=-9, y=7, z=-9},
-	max_pos = {x= 9, y=7, z= 9},
-	exptime=0.8,
-	size=2,
+	min_pos = {x=-9, y=8, z=-9},
+	max_pos = {x= 9, y=6, z= 9},
+	exptime = 1.1,
+	size = 2,
+	amount = 15,
+	falling_speed = 6,
+	acceleration={x=0, y=-0.05, z=0},
 	texture = "weather_raindrop.png"
 }
 
-local function generate_effects(params)
-	local avg_humidity = 40
-	local intensity = params.humidity / avg_humidity
-	local override = {}
-
-	override["climate_api:sound"] = {
-		gain = math.min(intensity, 1.2)
-	}
-
-	override["climate_api:particles"] = {
-		amount = 25 * math.min(intensity, 1.5),
-		falling_speed = 10 / math.min(intensity, 1.3)
-	}
-
-	return climate_api.utility.merge_tables(effects, override)
-end
-
-climate_api.register_weather(name, conditions, generate_effects)
+climate_api.register_weather(name, conditions, effects)
