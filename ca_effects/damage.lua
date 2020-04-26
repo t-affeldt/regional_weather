@@ -1,3 +1,11 @@
+--[[
+# Player Damage Effect
+Use this effect to damage a player during dangerous weather events.
+Expects a table as the parameter containing the following values:
+- ``value <number>``: The amount of damage to be applied per successful roll per cycle
+- ``chance <number>``: Defines a 1/x chance for the player to get damaged. Higher values result in less frequent damage.
+]]
+
 if not minetest.is_yes(minetest.settings:get_bool("enable_damage"))
 or not regional_weather.settings.damage then return end
 

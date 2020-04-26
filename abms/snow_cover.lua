@@ -77,7 +77,7 @@ climate_api.register_abm({
 	 end,
 
    action = function (pos, node, env)
-		 if minetest.get_node(pos).name ~= "air" then return end
+		 if node.name ~= "air" then return end
 		 local base = minetest.get_node(vector.add(pos, {x=0, y=-1, z=0})).name
 		 local is_soil = minetest.get_item_group(base, "soil") or 0
 		 local is_stone = minetest.get_item_group(base, "stone") or 0
@@ -109,8 +109,7 @@ climate_api.register_abm({
 	 },
 
    action = function (pos, node, env)
-		 local node_name = minetest.get_node(pos).name
-		 local value = minetest.get_item_group(node_name, "regional_weather_snow_cover")
+		 local value = minetest.get_item_group(node.name, "regional_weather_snow_cover")
 		 if value == nil then value = 0 end
 		 if value < 5 then
 			 minetest.set_node(pos, { name = BLOCK_PREFIX .. (value + 1) })
@@ -130,8 +129,7 @@ climate_api.register_abm({
 	 },
 
    action = function (pos, node, env)
-			local node_name = minetest.get_node(pos).name
-			local value = minetest.get_item_group(node_name, "regional_weather_snow_cover")
+			local value = minetest.get_item_group(node.name, "regional_weather_snow_cover")
 			if value == nil then value = 0 end
 			if value > 1 then
 				minetest.set_node(pos, { name = BLOCK_PREFIX .. (value - 1) })

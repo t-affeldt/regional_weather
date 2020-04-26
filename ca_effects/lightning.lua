@@ -1,3 +1,10 @@
+--[[
+# Lightning Effect
+Use this effect to cause lightning strikes.
+Requires lightning mod in order to function.
+Uses default lightning configuration. Expects any non-nil parameter.
+]]
+
 if not minetest.get_modpath("lightning") then return end
 
 local EFFECT_NAME = "regional_weather:lightning"

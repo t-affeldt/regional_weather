@@ -8,7 +8,14 @@ local BLOCK_NAME = "regional_weather:ice"
 minetest.register_node(BLOCK_NAME, {
 	tiles = {"(default_ice.png^[colorize:#ffffff:50)^[opacity:200"},
 	paramtype = "light",
-	groups = {cracky = 3, cools_lava = 1, slippery = 3, dig_immediate = 2},
+	groups = {
+		cracky = 3,
+		cools_lava = 1,
+		slippery = 3,
+		dig_immediate = 2,
+		melts = 1
+	},
+	freezemelt = "default:river_water_source",
 	sounds = default.node_sound_glass_defaults(),
 	use_texture_alpha = true,
 	drop = "",

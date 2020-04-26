@@ -19,6 +19,8 @@ regional_weather_soil (Hydrate farmland) bool true
 # If set to true, fires will be extinguished during rain showers.
 regional_weather_fire (Extinguish fire) bool true
 
+# If set to true, rain will wetten or dry nodes from pedology mod.
+regional_weather_pedology (Wetten pedology nodes) bool true
 
 [World Configuration]
 
