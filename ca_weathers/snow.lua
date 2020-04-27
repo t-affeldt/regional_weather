@@ -11,19 +11,20 @@ local conditions = {
 
 local effects = {}
 
-effects["climate_api:particles"] = {
-	min_pos = {x=-12, y=2, z=-12},
-	max_pos = {x= 12, y=8, z= 12},
-	amount = 4,
-	exptime = 7,
-	size = 1,
-	falling_speed = 0.85,
-	acceleration = {x=0, y=0.06, z=0},
-	textures = {}
-}
-
+local textures = {}
 for i = 1,12,1 do
-	effects["climate_api:particles"].textures[i] = "weather_snowflake" .. i .. ".png"
+	textures[i] = "weather_snowflake" .. i .. ".png"
 end
+
+effects["climate_api:particles"] = {
+	boxsize = { x = 24, y = 6, z = 24 },
+	v_offset = 2,
+	amount = 4,
+	expirationtime = 7,
+	velocity = 0.85,
+	acceleration = -0.06,
+	texture = textures,
+	glow = 6
+}
 
 climate_api.register_weather(name, conditions, effects)

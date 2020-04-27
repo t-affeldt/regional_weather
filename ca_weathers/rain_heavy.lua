@@ -10,24 +10,32 @@ local conditions = {
 
 local effects = {}
 
+effects["climate_api:skybox"] = {
+	cloud_data = {
+		color = "#5e676eb5"
+	},
+	priority = 11
+}
+
 effects["climate_api:sound"] = {
 	name = "weather_rain_heavy",
 	gain = 1
 }
 
 effects["climate_api:particles"] = {
-	min_pos = {x=-9, y=7, z=-9},
-	max_pos = {x= 9, y=7, z= 9},
-	falling_speed=7,
-	amount=17,
-	exptime=0.8,
-	min_size=25,
-	max_size=35,
-	textures={
+	boxsize = { x = 18, y = 0, z = 18 },
+	v_offset = 7,
+	velocity = 7,
+	amount = 17,
+	expirationtime = 1.2,
+	minsize = 25,
+	maxsize = 35,
+	texture = {
 		"weather_rain.png",
 		"weather_rain.png",
 		"weather_rain_medium.png"
-	}
+	},
+	glow = 5
 }
 
 climate_api.register_weather(name, conditions, effects)

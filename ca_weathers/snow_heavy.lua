@@ -10,6 +10,13 @@ local conditions = {
 
 local effects = {}
 
+effects["climate_api:skybox"] = {
+	cloud_data = {
+		color = "#5e676eb5"
+	},
+	priority = 11
+}
+
 effects["climate_api:hud_overlay"] = {
 	file = "weather_hud_frost.png",
 	z_index = -100,
@@ -17,13 +24,14 @@ effects["climate_api:hud_overlay"] = {
 }
 
 effects["climate_api:particles"] = {
-	min_pos = {x=-7, y=3, z=-7},
-	max_pos = {x= 7, y=6, z= 7},
-	exptime=7.5,
-	size=15,
-	amount=6,
-	falling_speed = 0.75,
-	texture="weather_snow.png"
+	boxsize = { x = 14, y = 3, z = 14 },
+	v_offset = 3,
+	expirationtime = 7.5,
+	size = 15,
+	amount = 6,
+	velocity = 0.75,
+	texture = "weather_snow.png",
+	glow = 6
 }
 
 climate_api.register_weather(name, conditions, effects)

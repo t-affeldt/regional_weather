@@ -24,22 +24,28 @@ effects["climate_api:hud_overlay"] = {
 	color_correction = true
 }
 
-effects["regional_weather:damage"] = {
+effects["climate_api:damage"] = {
 	chance = 3,
-	value = 1
+	value = 1,
+	check = {
+		type = "raycast",
+		height = 0,
+		velocity = 0.3
+	}
 }
 
 effects["climate_api:particles"] = {
-	min_pos = {x=-5, y=-4, z=-5},
-	max_pos = {x= 5, y= 4.5, z= 5},
-	falling_speed=1.2,
-	acceleration={x=0,y=0.8,z=0},
-	amount=40,
-	exptime=1.8,
-	size=20,
-	textures={
+	boxsize = { x = 8, y = 4.5, z = 8 },
+	velocity = 0.6,
+	acceleration = -0.2,
+	amount = 12,
+	expirationtime = 0.7,
+	size = 25,
+	texture = {
 		"weather_sandstorm.png",
-		"weather_sandstorm.png^[transformR180"
+		"weather_sandstorm.png^[transformFY",
+		"weather_sandstorm.png^[transformR180",
+		"weather_sandstorm.png^[transformFYR180"
 	}
 }
 

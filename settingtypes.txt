@@ -1,8 +1,5 @@
 [Features]
 
-# If set to true, sand storms and hail will damage affected players over time.
-regional_weather_damage (Cause player damage) bool true
-
 # If set to true, snow layers will stack up during snowy weather.
 regional_weather_snow_layers (Place snow layers) bool true
 
@@ -24,10 +21,16 @@ regional_weather_pedology (Wetten pedology nodes) bool true
 
 [World Configuration]
 
+# No visual effects will be applied below this height.
+# This will prevent unwanted visuals within large underground caves.
+regional_weather_min_height (Minimum height of weather effects) int -50
+
 # No visual effects will be applied above this height.
 # This value defaults to normal cloud height (120 nodes above sea level).
 regional_weather_max_height (Maximum height of weather effects) int 120
 
-# No visual effects will be applied below this height.
-# This will prevent unwanted visuals within large underground caves.
-regional_weather_min_height (Minimum height of weather effects) int -50
+# Average height of cloud bases
+regional_weather_cloud_height (Cloud height) int 120
+
+# Maxmial variation of cloud height from base value
+regional_weather_cloud_scale (Cloud height variation) int 40

@@ -11,9 +11,14 @@ local conditions = {
 
 local effects = {}
 
-effects["regional_weather:damage"] = {
+effects["climate_api:damage"] = {
 	chance = 15,
-	value = 3
+	value = 3,
+	check = {
+		type = "raycast",
+		height = 7,
+		velocity = 20
+	}
 }
 
 effects["climate_api:sound"] = {
@@ -21,18 +26,19 @@ effects["climate_api:sound"] = {
 	gain = 1
 }
 
-effects["climate_api:particles"] = {
-	min_pos = {x=-9, y=7, z=-9},
-	max_pos = {x= 9, y=7, z= 9},
-	falling_speed=20,
-	amount=6,
-	exptime=0.7,
-	size=1,
-	textures = {}
-}
-
-for i = 1,5,1 do
-	effects["climate_api:particles"].textures[i] = "weather_hail" .. i .. ".png"
+local textures = {}
+for i = 1,5 do
+	textures[i] = "weather_hail" .. i .. ".png"
 end
+
+effects["climate_api:particles"] = {
+	boxsize = { x = 18, y = 0, z = 18},
+	v_offset = 7,
+	velocity = 20,
+	amount = 6,
+	expirationtime = 0.7,
+	texture = textures,
+	glow = 5
+}
 
 climate_api.register_weather(name, conditions, effects)

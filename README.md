@@ -25,6 +25,7 @@ The following mods are recommended to be installed alongside Regional Weather:
 - [Lightning](https://github.com/minetest-mods/lightning): Adds to heavy rain by enabling additional lightning effects
 - [Farming](https://github.com/minetest/minetest_game/tree/master/mods/farming) (as part of MTG) or [Farming Redo](https://forum.minetest.net/viewtopic.php?t=9019): Add farmland and crops to grow food. Farmland wil turn wet during rain effects.
 - [Fire](https://github.com/minetest/minetest_game/tree/master/mods/fire) (as part of MTG): Adds fires that can be caused by lightning strikes and other effects and will be extinguished during rain effects.
+- [Pedology](https://forum.minetest.net/viewtopic.php?f=11&t=9429) Adds a lot of nodes with dynamic wetness and dryness states.
 - [Ambience](https://notabug.org/TenPlus1/ambience): Plays some nice ambient sound effects based on where you are.
 
 For easier installation, you can get a lot of these mods as part of my [Climate Modpack](https://github.com/t-affeldt/climate).
@@ -35,8 +36,6 @@ Go to ``Settings → All Settings → Mods → regional_weather`` to change them
 Also check out the options inside the ``climate_api`` section for additional configuration options, including performance tweaks and feature switches.
 
 ### Features
-- ``Cause player damage`` (default true):
-	If set to true, sand storms and hail will damage affected players over time.
 - ``Place snow layers`` (default true):
 	If set to true, snow layers will stack up during snowy weather.
 - ``Freeze river water`` (default true):
@@ -50,6 +49,9 @@ Also check out the options inside the ``climate_api`` section for additional con
 - ``Extinguish fire`` (bool true):
 	If set to true, fires will be extinguished during rain showers.
 	Requires *fire* mod.
+- ``Wetten pedology nodes`` (default true):
+	If set to true, rain will wetten or dry nodes from pedology mod.
+	Requires *pedology* mod.
 
 ### World Configuration
 - ``Maximum height of weather effects`` (default 120):
@@ -58,6 +60,10 @@ Also check out the options inside the ``climate_api`` section for additional con
 - ``Minimum height of weather effects`` (default -50):
 	No visual effects will be applied below this height.
 	This will prevent unwanted visuals within large underground caves.
+- ``Cloud height`` (default 120)
+	Average height of cloud bases
+- ``Cloud height variation`` (default 40)
+	Maxmial variation of cloud height from base value
 
 ## License information
 ### Source Code
