@@ -1,15 +1,14 @@
 --[[
 # Lightning Effect
 Use this effect to cause lightning strikes.
-Requires lightning mod in order to function.
-Uses default lightning configuration. Expects any non-nil parameter.
+Requires lightning mod in order to function. Uses default lightning configuration.
+Expects an integer indicating a chance (between 0 and 1) for lightning to strike (per cycle and player).
 ]]
 
 if not minetest.get_modpath("lightning") then return end
 
 local EFFECT_NAME = "regional_weather:lightning"
 
-local LIGHTNING_CHANCE = 20
 lightning.auto = false
 
 local rng = PcgRandom(82492402425)
@@ -39,8 +38,15 @@ end
 
 local function handle_effect(player_data)
 	for playername, data in pairs(player_data) do
-		local random = rng:next(1, LIGHTNING_CHANCE)
-		if random == 1 then
+		local chance = 0
+		for weather, value in pairs(data) do
+			if type(value) ~= "number" then
+				value = 1/20
+			end
+			chance = chance + value - (chance * value)
+		end
+		local random = math.random()
+		if random <= chance then
 			local player = minetest.get_player_by_name(playername)
 			local ppos = player:get_pos()
 			local position = choose_pos(ppos)

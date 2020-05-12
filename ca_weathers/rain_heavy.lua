@@ -22,6 +22,8 @@ effects["climate_api:sound"] = {
 	gain = 1
 }
 
+effects["regional_weather:lightning"] = 1 / 20
+
 effects["climate_api:particles"] = {
 	boxsize = { x = 18, y = 0, z = 18 },
 	v_offset = 7,

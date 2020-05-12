@@ -13,14 +13,14 @@ local function handle_effect(player_data)
 		for weather, value in pairs(data) do
 			product = product * value
 		end
-		climate_api.utility.add_physics(EFFECT_NAME, player, "speed", product)
+		climate_api.player_physics.add(EFFECT_NAME, player, "speed", product)
 	end
 end
 
 local function remove_effect(player_data)
 	for playername, data in ipairs(player_data) do
 		local player = minetest.get_player_by_name(playername)
-		climate_api.utility.remove_physics(EFFECT_NAME, player, "speed")
+		climate_api.player_physics.remove(EFFECT_NAME, player, "speed")
 	end
 end
 
