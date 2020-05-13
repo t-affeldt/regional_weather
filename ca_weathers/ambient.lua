@@ -1,5 +1,4 @@
 local name = "regional_weather:ambient"
-local CLOUD_SPEED = 1.8
 
 local conditions = {}
 
@@ -15,14 +14,16 @@ end
 
 local function generate_effects(params)
 	local override = {}
-	local wind = climate_api.environment.get_wind()
+
+	local cloud_height = calc_cloud_height(params.heat, params.humidity, params.dewpoint)
+	local wind = climate_api.environment.get_wind({ x = 0, y = cloud_height, z = 0 })
 
 	local skybox = {priority = 10}
 	skybox.cloud_data = {
 		density = climate_api.utility.rangelim(params.humidity / 100, 0.15, 0.65),
-		speed = vector.multiply(wind, CLOUD_SPEED),
+		speed = wind,
 		thickness = climate_api.utility.rangelim(params.base_humidity * 0.2, 1, 18),
-		height = calc_cloud_height(params.heat, params.humidity, params.dewpoint),
+		height = cloud_height,
 		ambient = "#0f0f1050"
 	}
 

@@ -2,6 +2,16 @@ local BLOCK_PREFIX = "regional_weather:puddle_"
 local VARIANT_COUNT = 39
 local MIN_DISTANCE = 4
 
+local GROUND_COVERS = {
+	"group:soil",
+	"group:stone",
+	"group:sand",
+	"group:wood",
+	"default:permafrost",
+	"default:permafrost_with_moss",
+	"default:permafrost_with_stones"
+}
+
 if not regional_weather.settings.puddles then
 	for i=1,VARIANT_COUNT do
 		for r=0,270,90  do
@@ -17,74 +27,68 @@ local node_box = {
 }
 
 for i = 1,VARIANT_COUNT do
-	for rotation = 0,270,90 do
-		for flip = 0,1 do
-			local name = BLOCK_PREFIX .. i .. "_" .. rotation
-			local index = i
-			if i < 10 then index = "0" .. i end
-			local texture = "weather_puddle_" .. index .. ".png^[opacity:128"
-			if flip == 1 or rotation > 0 then
-				texture = texture .. "^[transform"
-			end
-			if flip == 1 then
-				name = name .. "_flipped"
-				texture = texture .. "FX"
-			end
-			if rotation > 0 then
-				texture = texture .. "R" .. rotation
-			end
-			minetest.register_node(name, {
-				tiles = { texture },
-				drawtype = "nodebox",
-				pointable = false,
-				buildable_to = true,
-				floodable = true,
-				walkable = false,
-				sunlight_propagates = true,
-				paramtype = "light",
-				use_texture_alpha = true,
-				node_box = node_box,
-				groups = {
-					not_in_creative_inventory = 1,
-					crumbly = 3,
-					attached_node = 1,
-					slippery = 1,
-					flora = 1,
-					water = 1,
-					regional_weather_puddle = 1
-				},
-				drop = "",
-				sounds = {
-					footstep = {
-						name = "weather_puddle",
-						gain = 0.8
-					}
-				}
-			})
+	for flip = 0,1 do
+		local name = BLOCK_PREFIX .. i
+		local index = i
+		if i < 10 then index = "0" .. i end
+		local texture = "weather_puddle_" .. index .. ".png^[opacity:128"
+		if flip == 1 then
+			name = name .. "_flipped"
+			texture = texture .. "^[transformFX"
 		end
+		minetest.register_node(name, {
+			tiles = { texture },
+			drawtype = "nodebox",
+			pointable = false,
+			buildable_to = true,
+			floodable = true,
+			walkable = false,
+			sunlight_propagates = true,
+			paramtype = "light",
+			paramtype2 = "facedir",
+			use_texture_alpha = true,
+			node_box = node_box,
+			groups = {
+				not_in_creative_inventory = 1,
+				crumbly = 3,
+				attached_node = 1,
+				slippery = 1,
+				flora = 1,
+				water = 1,
+				weather_puddle = 1
+			},
+			drop = "",
+			sounds = {
+				footstep = {
+					name = "weather_puddle",
+					gain = 0.8
+				}
+			}
+		})
 	end
 end
 
-minetest.register_alias("regional_weather:puddle", BLOCK_PREFIX .. "14_0")
+minetest.register_alias("regional_weather:puddle", BLOCK_PREFIX .. "14")
 
 local function get_random_puddle()
 	local index = math.random(1, VARIANT_COUNT)
 	local rotation = math.random(0, 3) * 90
 	local flip = math.random(0, 1)
-	local name = BLOCK_PREFIX .. index .. "_" .. rotation
+	local name = BLOCK_PREFIX .. index
 	if flip == 1 then
 		name = name .. "_flipped"
 	end
-	return name
+	local param2 = minetest.dir_to_facedir(minetest.yaw_to_dir(rotation))
+	return { name = name, param2 = param2 }
 end
 
 -- Makes Puddles when raining
 climate_api.register_abm({
 	label			= "create rain puddles",
-	nodenames	= { "group:soil", "group:stone" },
+	nodenames	= GROUND_COVERS,
 	neighbors	= { "air" },
-	interval	= 15,
-	chance		= 50,
+	interval	= 8,
+	chance		= 150,
 	catch_up	= false,
 
 	 conditions	= {
@@ -101,9 +105,8 @@ climate_api.register_abm({
 
    action = function (pos, node, env)
 		 if minetest.get_node(pos).name ~= "air" then return end
-		 if minetest.find_node_near(pos, MIN_DISTANCE, "group:regional_weather_puddle") then return end
-		 local puddle_name = get_random_puddle()
-		 minetest.set_node(pos, {name = puddle_name})
+		 if minetest.find_node_near(pos, MIN_DISTANCE, "group:weather_puddle") then return end
+		 minetest.set_node(pos, get_random_puddle())
 	 end
 })
 

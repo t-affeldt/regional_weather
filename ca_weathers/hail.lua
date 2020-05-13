@@ -3,6 +3,7 @@ local name = "regional_weather:hail"
 local conditions = {
 	min_height			= regional_weather.settings.min_height,
 	max_height			= regional_weather.settings.max_height,
+	min_heat				= 30,
 	max_heat				= 45,
 	min_humidity		= 65,
 	min_windspeed		= 2.5,
@@ -12,7 +13,7 @@ local conditions = {
 local effects = {}
 
 effects["climate_api:damage"] = {
-	chance = 15,
+	rarity = 15,
 	value = 3,
 	check = {
 		type = "raycast",

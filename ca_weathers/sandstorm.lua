@@ -25,7 +25,7 @@ effects["climate_api:hud_overlay"] = {
 }
 
 effects["climate_api:damage"] = {
-	chance = 3,
+	rarity = 3,
 	value = 1,
 	check = {
 		type = "raycast",
