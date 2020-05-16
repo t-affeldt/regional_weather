@@ -26,7 +26,7 @@ regional_weather_fire (Extinguish fire) bool true
 regional_weather_pedology (Wetten pedology nodes) bool true
 
 # Multiplier for lightning strike chances
-# Require lightning mod to be installed
+# Requires lightning mod to be installed
 regional_weather_lightning (Lightning chance modifier) float 1 0 20
 
 [World Configuration]
