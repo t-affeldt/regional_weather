@@ -15,16 +15,18 @@ end
 
 regional_weather = {}
 regional_weather.settings = {}
-regional_weather.settings.snow				= get_setting_bool("snow_layers", true)
-regional_weather.settings.puddles			= get_setting_bool("puddles", true)
-regional_weather.settings.soil				= get_setting_bool("soil", true)
-regional_weather.settings.fire				= get_setting_bool("fire", true)
-regional_weather.settings.ice					= get_setting_bool("ice", true)
-regional_weather.settings.pedology		= get_setting_bool("pedology", true)
-regional_weather.settings.max_height	= get_setting_number("max_height", 120)
-regional_weather.settings.min_height	= get_setting_number("min_height", -50)
-regional_weather.settings.cloud_height= get_setting_number("cloud_height", 120)
-regional_weather.settings.cloud_scale	= get_setting_number("cloud_scale", 40)
+regional_weather.settings.player_speed	= get_setting_bool("player_speed", true)
+regional_weather.settings.snow					= get_setting_bool("snow_layers", true)
+regional_weather.settings.puddles				= get_setting_bool("puddles", true)
+regional_weather.settings.puddles_water	= get_setting_bool("puddles_water", true)
+regional_weather.settings.soil					= get_setting_bool("soil", true)
+regional_weather.settings.fire					= get_setting_bool("fire", true)
+regional_weather.settings.ice						= get_setting_bool("ice", true)
+regional_weather.settings.pedology			= get_setting_bool("pedology", true)
+regional_weather.settings.max_height		= get_setting_number("max_height", 120)
+regional_weather.settings.min_height		= get_setting_number("min_height", -50)
+regional_weather.settings.cloud_height	= get_setting_number("cloud_height", 120)
+regional_weather.settings.cloud_scale		= get_setting_number("cloud_scale", 40)
 
 -- warn about clouds being overriden by MTG weather
 if climate_mod.settings.skybox

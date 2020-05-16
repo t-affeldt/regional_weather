@@ -1,5 +1,8 @@
 [Features]
 
+# If set to true, wind will boost or penalize player movements based on direction.
+regional_weather_player_speed (Change movement speed based on wind) bool true
+
 # If set to true, snow layers will stack up during snowy weather.
 regional_weather_snow_layers (Place snow layers) bool true
 
@@ -10,8 +13,11 @@ regional_weather_ice (Freeze river water) bool true
 # If set to true, water puddles will form during rain or when snow layers have melted.
 regional_weather_puddles (Place rain puddles) bool true
 
+# If set to true, puddles will be marked as water and hydrate farmland.
+regional_weather_puddles_water (Hydrate farmland near puddles) bool true
+
 # If set to true, rain will cause dry farmland to turn wet.
-regional_weather_soil (Hydrate farmland) bool true
+regional_weather_soil (Hydrate farmland during rain) bool true
 
 # If set to true, fires will be extinguished during rain showers.
 regional_weather_fire (Extinguish fire) bool true

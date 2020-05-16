@@ -4,6 +4,8 @@ Use this effect to modify a player's movement speed.
 Expects a numeric value that will be multiplied with the current speed physics.
 ]]
 
+if not regional_weather.settings.player_speed then return end
+
 local EFFECT_NAME = "regional_weather:speed_buff"
 
 local function handle_effect(player_data)

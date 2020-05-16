@@ -26,6 +26,11 @@ local node_box = {
 	fixed = {-0.5, -0.5, -0.5, 0.5, -0.49, 0.5}
 }
 
+local apply_water_group
+if regional_weather.settings.puddles_water then
+	apply_water_group = 1
+end
+
 for i = 1,VARIANT_COUNT do
 	for flip = 0,1 do
 		local name = BLOCK_PREFIX .. i
@@ -54,7 +59,7 @@ for i = 1,VARIANT_COUNT do
 				attached_node = 1,
 				slippery = 1,
 				flora = 1,
-				water = 1,
+				water = apply_water_group,
 				weather_puddle = 1
 			},
 			drop = "",
