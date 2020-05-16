@@ -25,6 +25,10 @@ regional_weather_fire (Extinguish fire) bool true
 # If set to true, rain will wetten or dry nodes from pedology mod.
 regional_weather_pedology (Wetten pedology nodes) bool true
 
+# Multiplier for lightning strike chances
+# Require lightning mod to be installed
+regional_weather_lightning (Lightning chance modifier) float 1 0 20
+
 [World Configuration]
 
 # No visual effects will be applied below this height.

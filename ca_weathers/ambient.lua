@@ -58,7 +58,7 @@ local function generate_effects(params)
 		movement_direction = vector.normalize(movement)
 	end
 	local vector_product = vector.dot(movement_direction, wind)
-	local movement_penalty = climate_api.utility.sigmoid(vector_product, 1.6, 0.2, 0.8) + 0.2
+	local movement_penalty = climate_api.utility.sigmoid(vector_product, 1.5, 0.15, 0.9) + 0.2
 	override["regional_weather:speed_buff"] = movement_penalty
 	return override
 end

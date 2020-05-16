@@ -6,6 +6,7 @@ Expects an integer indicating a chance (between 0 and 1) for lightning to strike
 ]]
 
 if not minetest.get_modpath("lightning") then return end
+if regional_weather.settings.lightning == 0 then return end
 
 local EFFECT_NAME = "regional_weather:lightning"
 
@@ -46,7 +47,7 @@ local function handle_effect(player_data)
 			chance = chance + value - (chance * value)
 		end
 		local random = math.random()
-		if random <= chance then
+		if random <= chance * regional_weather.settings.lightning then
 			local player = minetest.get_player_by_name(playername)
 			local ppos = player:get_pos()
 			local position = choose_pos(ppos)

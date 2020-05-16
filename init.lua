@@ -1,14 +1,18 @@
 local modname = minetest.get_current_modname()
 local modpath = minetest.get_modpath(modname)
 
-local function get_setting_bool(name, default)
-	local value = minetest.settings:get_bool("regional_weather_" .. name)
+local function get_setting_bool(name, default, is_global)
+	local prefix = ""
+	if not is_global then prefix = "regional_weather_" end
+	local value = minetest.settings:get_bool(prefix .. name)
 	if type(value) == "nil" then value = default end
 	return minetest.is_yes(value)
 end
 
-local function get_setting_number(name, default)
-	local value = minetest.settings:get("regional_weather_" .. name)
+local function get_setting_number(name, default, is_global)
+	local prefix = ""
+	if not is_global then prefix = "regional_weather_" end
+	local value = minetest.settings:get(prefix .. name)
 	if type(value) == "nil" then value = default end
 	return tonumber(value)
 end
@@ -23,6 +27,7 @@ regional_weather.settings.soil					= get_setting_bool("soil", true)
 regional_weather.settings.fire					= get_setting_bool("fire", true)
 regional_weather.settings.ice						= get_setting_bool("ice", true)
 regional_weather.settings.pedology			= get_setting_bool("pedology", true)
+regional_weather.settings.lightning			= get_setting_number("lightning", 1)
 regional_weather.settings.max_height		= get_setting_number("max_height", 120)
 regional_weather.settings.min_height		= get_setting_number("min_height", -50)
 regional_weather.settings.cloud_height	= get_setting_number("cloud_height", 120)
@@ -31,7 +36,7 @@ regional_weather.settings.cloud_scale		= get_setting_number("cloud_scale", 40)
 -- warn about clouds being overriden by MTG weather
 if climate_mod.settings.skybox
 and minetest.get_modpath("weather")
-and get_setting_bool("enable_weather", true) then
+and get_setting_bool("enable_weather", true, true) then
 	minetest.log("warning", "[Regional Weather] Disable MTG weather for the best experience")
 end
 
