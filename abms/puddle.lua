@@ -13,6 +13,8 @@ local GROUND_COVERS = {
 	"default:permafrost_with_stones"
 }
 
+local S = regional_weather.i18n
+
 -- clean up puddles if disabled
 if not regional_weather.settings.puddles then
 	-- set all puddle nodes to air
@@ -57,6 +59,7 @@ for i = 1, VARIANT_COUNT do
 			texture = texture .. "^[transformFX"
 		end
 		minetest.register_node(name, {
+			description = S("Puddle"),
 			tiles = { texture },
 			drawtype = "nodebox",
 			pointable = false,

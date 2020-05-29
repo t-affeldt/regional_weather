@@ -5,7 +5,10 @@ then return end
 
 local BLOCK_NAME = "regional_weather:ice"
 
+local S = regional_weather.i18n
+
 minetest.register_node(BLOCK_NAME, {
+	description = S("Thin Ice"),
 	tiles = {"(default_ice.png^[colorize:#ffffff:50)^[opacity:200"},
 	paramtype = "light",
 	groups = {

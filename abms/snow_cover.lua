@@ -2,6 +2,8 @@ local BLOCK_PREFIX = "regional_weather:snow_cover_"
 local CHECK_DISTANCE = 3
 local MAX_AMOUNT = 20
 
+local S = regional_weather.i18n
+
 if not minetest.get_modpath("default")
 or default.node_sound_snow_defaults == nil
 or not regional_weather.settings.snow then
@@ -25,6 +27,7 @@ for i = 1,5 do
 	}
 
 	minetest.register_node(BLOCK_PREFIX .. i, {
+		description = S("Snow Cover"),
 		tiles = { "default_snow.png" },
 		drawtype = "nodebox",
 		buildable_to = i < 3,
