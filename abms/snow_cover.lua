@@ -1,4 +1,6 @@
 local BLOCK_PREFIX = "regional_weather:snow_cover_"
+local CHECK_DISTANCE = 3
+local MAX_AMOUNT = 20
 
 if not minetest.get_modpath("default")
 or default.node_sound_snow_defaults == nil
@@ -35,7 +37,7 @@ for i = 1,5 do
 			crumbly = 3,
 			falling_node = 1,
 			snowy = 1,
-			regional_weather_snow_cover = i
+			weather_snow_cover = i
 		},
 		sounds = default.node_sound_snow_defaults(),
 		drop = "default:snow " .. math.ceil(i / 2),
@@ -69,7 +71,15 @@ climate_api.register_abm({
 		 max_height		= regional_weather.settings.max_height,
 		 min_humidity	= 55,
 		 max_heat			= 30,
-		 daylight			= 15
+		 daylight			= 15,
+		 not_biome		= {
+			"cold_desert",
+			"cold_desert_ocean",
+			"desert",
+			"desert_ocean",
+			"sandstone_desert",
+			"sandstone_desert_ocean"
+		}
 	 },
 
 	 pos_override = function(pos)
@@ -77,13 +87,16 @@ climate_api.register_abm({
 	 end,
 
    action = function (pos, node, env)
+		 -- only override air nodes
 		 if node.name ~= "air" then return end
-		 local base = minetest.get_node(vector.add(pos, {x=0, y=-1, z=0})).name
-		 local is_soil = minetest.get_item_group(base, "soil") or 0
-		 local is_stone = minetest.get_item_group(base, "stone") or 0
-		 if not (is_soil == 0 and is_stone == 0) then
-		 	minetest.set_node(pos, { name = BLOCK_PREFIX .. "1" })
-		end
+		 -- do not place snow if area is not fully loaded
+		 if minetest.find_node_near(pos, CHECK_DISTANCE, "ignore") then return end
+		 -- do not place snow if already enpugh snow
+		 local pos1 = vector.add(pos, { x = -CHECK_DISTANCE, y = -1, z = -CHECK_DISTANCE })
+		 local pos2 = vector.add(pos, { x =  CHECK_DISTANCE, y =  1, z =  CHECK_DISTANCE })
+		 local preplaced = minetest.find_nodes_in_area(pos1, pos2, "group:weather_snow_cover")
+		 if preplaced ~= nil and #preplaced >= MAX_AMOUNT then return end
+		 minetest.set_node(pos, { name = BLOCK_PREFIX .. "1" })
 	 end
 })
 
@@ -93,7 +106,7 @@ climate_api.register_abm({
 		"group:flora",
 		"group:grass",
 		"group:plant",
-		"group:regional_weather_snow_cover"
+		"group:weather_snow_cover"
 	},
 	neighbors	= { "air" },
 	interval	= 25,
@@ -105,12 +118,34 @@ climate_api.register_abm({
 		 max_height		= regional_weather.settings.max_height,
 		 min_humidity	= 55,
 		 max_heat			= 30,
-		 daylight			= 15
+		 daylight			= 15,
+		 not_biome		= {
+			"cold_desert",
+			"cold_desert_ocean",
+			"desert",
+			"desert_ocean",
+			"sandstone_desert",
+			"sandstone_desert_ocean"
+		}
 	 },
 
    action = function (pos, node, env)
-		 local value = minetest.get_item_group(node.name, "regional_weather_snow_cover")
-		 if value == nil then value = 0 end
+		 local value = minetest.get_item_group(node.name, "weather_snow_cover") or 0
+		 if value == 0 then
+			 -- do not override plants unless marked as buildable_to
+			 local def = minetest.registered_nodes[node.name]
+			 if def == nil or not def.buildable_to then return end
+			 -- do not override plants of the frost_resistance group
+			 local resistance = minetest.get_item_group(node.name, "frost_resistance") or 0
+			 if resistance > 0 then return end
+		 end
+		 -- do not place snow if area is not fully loaded
+		 if minetest.find_node_near(pos, CHECK_DISTANCE, "ignore") then return end
+		 -- do not place snow if already enpugh snow
+		 local pos1 = vector.add(pos, { x = -CHECK_DISTANCE, y = -1, z = -CHECK_DISTANCE })
+		 local pos2 = vector.add(pos, { x =  CHECK_DISTANCE, y =  1, z =  CHECK_DISTANCE })
+		 local preplaced = minetest.find_nodes_in_area(pos1, pos2, "group:weather_snow_cover")
+		 if preplaced ~= nil and #preplaced >= MAX_AMOUNT then return end
 		 if value < 5 then
 			 minetest.set_node(pos, { name = BLOCK_PREFIX .. (value + 1) })
 		 end
@@ -119,9 +154,9 @@ climate_api.register_abm({
 
 climate_api.register_abm({
 	label			= "melt snow covers",
-	nodenames	= { "group:regional_weather_snow_cover" },
-	interval	= 25,
-	chance		= 10,
+	nodenames	= { "group:weather_snow_cover" },
+	interval	= 15,
+	chance		= 4,
 	catch_up	= true,
 
 	 conditions	= {
@@ -129,12 +164,12 @@ climate_api.register_abm({
 	 },
 
    action = function (pos, node, env)
-			local value = minetest.get_item_group(node.name, "regional_weather_snow_cover")
+			local value = minetest.get_item_group(node.name, "weather_snow_cover")
 			if value == nil then value = 0 end
 			if value > 1 then
 				minetest.set_node(pos, { name = BLOCK_PREFIX .. (value - 1) })
 			elseif regional_weather.settings.puddles then
-				minetest.set_node(pos, { name = "regional_weather:puddle" })
+				minetest.set_node(pos, regional_weather.get_random_puddle())
 			else
 				minetest.set_node(pos, { name = "air" })
 			end

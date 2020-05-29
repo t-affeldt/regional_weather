@@ -5,7 +5,15 @@ local conditions = {
 	max_height = regional_weather.settings.max_height,
 	max_heat				= 30,
 	min_humidity		= 65,
-	daylight				= 15
+	daylight				= 15,
+	not_biome				= {
+		"cold_desert",
+		"cold_desert_ocean",
+		"desert",
+		"desert_ocean",
+		"sandstone_desert",
+		"sandstone_desert_ocean"
+	}
 }
 
 local effects = {}

@@ -1,6 +1,7 @@
 local BLOCK_PREFIX = "regional_weather:puddle_"
 local VARIANT_COUNT = 39
-local MIN_DISTANCE = 4
+local CHECK_DISTANCE = 4
+local MAX_AMOUNT = 3
 
 local GROUND_COVERS = {
 	"group:soil",
@@ -12,18 +13,32 @@ local GROUND_COVERS = {
 	"default:permafrost_with_stones"
 }
 
+-- clean up puddles if disabled
 if not regional_weather.settings.puddles then
-	for i=1,VARIANT_COUNT do
-		for r=0,270,90  do
-			minetest.register_alias(BLOCK_PREFIX .. i .. "_" .. r, "air")
+	-- set all puddle nodes to air
+	minetest.register_alias("regional_weather:puddle", "air")
+	for i = 1, VARIANT_COUNT do
+		for flip = 0, 1 do
+			local name = BLOCK_PREFIX .. i
+			if flip == 1 then
+				name = name .. "_flipped"
+			end
+			minetest.register_alias(name, "air")
 		end
 	end
+
+	-- return air instead of a puddle
+	function regional_weather.get_random_puddle()
+		return { name = "air" }
+	end
+
+	-- end puddle execution
 	return
 end
 
 local node_box = {
 	type  = "fixed",
-	fixed = {-0.5, -0.5, -0.5, 0.5, -0.49, 0.5}
+	fixed = { -0.5, -0.5, -0.5, 0.5, -0.49, 0.5 }
 }
 
 local apply_water_group
@@ -31,8 +46,8 @@ if regional_weather.settings.puddles_water then
 	apply_water_group = 1
 end
 
-for i = 1,VARIANT_COUNT do
-	for flip = 0,1 do
+for i = 1, VARIANT_COUNT do
+	for flip = 0, 1 do
 		local name = BLOCK_PREFIX .. i
 		local index = i
 		if i < 10 then index = "0" .. i end
@@ -75,7 +90,7 @@ end
 
 minetest.register_alias("regional_weather:puddle", BLOCK_PREFIX .. "14")
 
-local function get_random_puddle()
+function regional_weather.get_random_puddle()
 	local index = math.random(1, VARIANT_COUNT)
 	local rotation = math.random(0, 3) * 90
 	local flip = math.random(0, 1)
@@ -109,16 +124,23 @@ climate_api.register_abm({
 	 end,
 
    action = function (pos, node, env)
+		 -- only override air nodes
 		 if minetest.get_node(pos).name ~= "air" then return end
-		 if minetest.find_node_near(pos, MIN_DISTANCE, "group:weather_puddle") then return end
-		 minetest.set_node(pos, get_random_puddle())
+		 -- do not place puddle if area is not fully loaded
+		 if minetest.find_node_near(pos, CHECK_DISTANCE, "ignore") then return end
+		 -- do not place puddle if already enpugh puddles
+		 local pos1 = vector.add(pos, { x = -CHECK_DISTANCE, y = -1, z = -CHECK_DISTANCE })
+		 local pos2 = vector.add(pos, { x =  CHECK_DISTANCE, y =  1, z =  CHECK_DISTANCE })
+		 local preplaced = minetest.find_nodes_in_area(pos1, pos2, "group:weather_puddle")
+		 if preplaced ~= nil and #preplaced >= MAX_AMOUNT then return end
+		 minetest.set_node(pos, regional_weather.get_random_puddle())
 	 end
 })
 
 -- Makes puddles dry up when not raining
 climate_api.register_abm({
 	label = "remove rain puddles",
-	nodenames	= { "group:regional_weather_puddle" },
+	nodenames	= { "group:weather_puddle" },
 	interval	= 10,
 	chance		= 3,
 	catch_up	= true,
@@ -126,8 +148,6 @@ climate_api.register_abm({
 	action = function (pos, node, env)
 		if env.humidity < 55 then
 			minetest.remove_node(pos)
-		elseif env.heat < 30 and regional_weather.settings.snow_cover then
-			minetest.set_node(pos, {name = "regional_weather:snow_cover_1"})
     end
 	end
 })

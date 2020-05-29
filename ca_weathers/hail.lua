@@ -7,7 +7,15 @@ local conditions = {
 	max_heat				= 45,
 	min_humidity		= 65,
 	min_windspeed		= 2.5,
-	daylight				= 15
+	daylight				= 15,
+	not_biome				= {
+		"cold_desert",
+		"cold_desert_ocean",
+		"desert",
+		"desert_ocean",
+		"sandstone_desert",
+		"sandstone_desert_ocean"
+	}
 }
 
 local effects = {}
