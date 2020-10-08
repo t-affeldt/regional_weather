@@ -21,6 +21,7 @@ regional_weather = {}
 regional_weather.settings = {}
 regional_weather.settings.player_speed	= get_setting_bool("player_speed", true)
 regional_weather.settings.snow					= get_setting_bool("snow_layers", true)
+regional_weather.settings.snow_griefing	= get_setting_bool("snow_griefing", true)
 regional_weather.settings.puddles				= get_setting_bool("puddles", true)
 regional_weather.settings.puddles_water	= get_setting_bool("puddles_water", true)
 regional_weather.settings.soil					= get_setting_bool("soil", true)

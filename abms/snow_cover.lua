@@ -103,57 +103,59 @@ climate_api.register_abm({
 	 end
 })
 
-climate_api.register_abm({
-	label			= "replace flora with snow covers and stack covers higher",
-	nodenames	= {
-		"group:flora",
-		"group:grass",
-		"group:plant",
-		"group:weather_snow_cover"
-	},
-	neighbors	= { "air" },
-	interval	= 25,
-	chance		= 30,
-	catch_up	= false,
+if regional_weather.settings.snow_griefing then
+	climate_api.register_abm({
+		label			= "replace flora with snow covers and stack covers higher",
+		nodenames	= {
+			"group:flora",
+			"group:grass",
+			"group:plant",
+			"group:weather_snow_cover"
+		},
+		neighbors	= { "air" },
+		interval	= 25,
+		chance		= 30,
+		catch_up	= false,
 
-	 conditions	= {
-		 min_height		= regional_weather.settings.min_height,
-		 max_height		= regional_weather.settings.max_height,
-		 min_humidity	= 55,
-		 max_heat			= 30,
-		 daylight			= 15,
-		 not_biome		= {
-			"cold_desert",
-			"cold_desert_ocean",
-			"desert",
-			"desert_ocean",
-			"sandstone_desert",
-			"sandstone_desert_ocean"
-		}
-	 },
+		 conditions	= {
+			 min_height		= regional_weather.settings.min_height,
+			 max_height		= regional_weather.settings.max_height,
+			 min_humidity	= 55,
+			 max_heat			= 30,
+			 daylight			= 15,
+			 not_biome		= {
+				"cold_desert",
+				"cold_desert_ocean",
+				"desert",
+				"desert_ocean",
+				"sandstone_desert",
+				"sandstone_desert_ocean"
+			}
+		 },
 
-   action = function (pos, node, env)
-		 local value = minetest.get_item_group(node.name, "weather_snow_cover") or 0
-		 if value == 0 then
-			 -- do not override plants unless marked as buildable_to
-			 local def = minetest.registered_nodes[node.name]
-			 if def == nil or not def.buildable_to then return end
-			 -- do not override plants of the frost_resistance group
-			 local resistance = minetest.get_item_group(node.name, "frost_resistance") or 0
-			 if resistance > 0 then return end
+	   action = function (pos, node, env)
+			 local value = minetest.get_item_group(node.name, "weather_snow_cover") or 0
+			 if value == 0 then
+				 -- do not override plants unless marked as buildable_to
+				 local def = minetest.registered_nodes[node.name]
+				 if def == nil or not def.buildable_to then return end
+				 -- do not override plants of the frost_resistance group
+				 local resistance = minetest.get_item_group(node.name, "frost_resistance") or 0
+				 if resistance > 0 then return end
+			 end
+			 -- do not place snow if area is not fully loaded
+			 if minetest.find_node_near(pos, CHECK_DISTANCE, "ignore") then return end
+			 -- do not place snow if already enpugh snow
+			 local pos1 = vector.add(pos, { x = -CHECK_DISTANCE, y = -1, z = -CHECK_DISTANCE })
+			 local pos2 = vector.add(pos, { x =  CHECK_DISTANCE, y =  1, z =  CHECK_DISTANCE })
+			 local preplaced = minetest.find_nodes_in_area(pos1, pos2, "group:weather_snow_cover")
+			 if preplaced ~= nil and #preplaced >= MAX_AMOUNT then return end
+			 if value < 5 then
+				 minetest.set_node(pos, { name = BLOCK_PREFIX .. (value + 1) })
+			 end
 		 end
-		 -- do not place snow if area is not fully loaded
-		 if minetest.find_node_near(pos, CHECK_DISTANCE, "ignore") then return end
-		 -- do not place snow if already enpugh snow
-		 local pos1 = vector.add(pos, { x = -CHECK_DISTANCE, y = -1, z = -CHECK_DISTANCE })
-		 local pos2 = vector.add(pos, { x =  CHECK_DISTANCE, y =  1, z =  CHECK_DISTANCE })
-		 local preplaced = minetest.find_nodes_in_area(pos1, pos2, "group:weather_snow_cover")
-		 if preplaced ~= nil and #preplaced >= MAX_AMOUNT then return end
-		 if value < 5 then
-			 minetest.set_node(pos, { name = BLOCK_PREFIX .. (value + 1) })
-		 end
-	 end
-})
+	})
+end
 
 climate_api.register_abm({
 	label			= "melt snow covers",
