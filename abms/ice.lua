@@ -43,7 +43,8 @@ climate_api.register_abm({
 		 min_height		= regional_weather.settings.min_height,
 		 max_height		= regional_weather.settings.max_height,
 		 max_heat			= 25,
-		 daylight			= 15
+		 daylight			= 15,
+		 indoors			= false
 	 },
 
 	 action = function (pos, node, env)
@@ -62,7 +63,8 @@ climate_api.register_abm({
 		 min_height		= regional_weather.settings.min_height,
 		 max_height		= regional_weather.settings.max_height,
 		 min_heat			= 40,
-		 daylight			= 15
+		 daylight			= 15,
+		 indoors			= false
 	 },
 
 	 action = function (pos, node, env)

@@ -66,7 +66,7 @@ climate_api.register_abm({
 	},
 	neighbors	= { "air" },
 	interval	= 25,
-	chance		= 40,
+	chance		= 80,
 	catch_up	= false,
 
 	 conditions	= {
@@ -74,7 +74,6 @@ climate_api.register_abm({
 		 max_height		= regional_weather.settings.max_height,
 		 min_humidity	= 55,
 		 max_heat			= 30,
-		 daylight			= 15,
 		 not_biome		= {
 			"cold_desert",
 			"cold_desert_ocean",
@@ -82,7 +81,9 @@ climate_api.register_abm({
 			"desert_ocean",
 			"sandstone_desert",
 			"sandstone_desert_ocean"
-		}
+		},
+		daylight = 15,
+		indoors = false
 	 },
 
 	 pos_override = function(pos)
@@ -114,7 +115,7 @@ if regional_weather.settings.snow_griefing then
 		},
 		neighbors	= { "air" },
 		interval	= 25,
-		chance		= 120,
+		chance		= 160,
 		catch_up	= false,
 
 		 conditions	= {
@@ -122,7 +123,6 @@ if regional_weather.settings.snow_griefing then
 			 max_height		= regional_weather.settings.max_height,
 			 min_humidity	= 55,
 			 max_heat			= 30,
-			 daylight			= 15,
 			 not_biome		= {
 				"cold_desert",
 				"cold_desert_ocean",
@@ -130,7 +130,9 @@ if regional_weather.settings.snow_griefing then
 				"desert_ocean",
 				"sandstone_desert",
 				"sandstone_desert_ocean"
-			}
+			},
+			daylight = 15,
+			indoors = false
 		 },
 
 	   action = function (pos, node, env)
@@ -157,13 +159,11 @@ if regional_weather.settings.snow_griefing then
 	})
 end
 
-local chance = 50
-if regional_weather.settings.snow_griefing then chance = 30 end
 climate_api.register_abm({
 	label			= "melt snow covers",
 	nodenames	= { "group:weather_snow_cover" },
 	interval	= 25,
-	chance		= chance,
+	chance		= 85,
 	catch_up	= true,
 
    action = function (pos, node, env)

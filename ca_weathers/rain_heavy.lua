@@ -5,7 +5,7 @@ local conditions = {
 	max_height		= regional_weather.settings.max_height,
 	min_heat			= 40,
 	min_humidity	= 65,
-	daylight			= 15
+	indoors				= false
 }
 
 local effects = {}

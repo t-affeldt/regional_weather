@@ -6,7 +6,7 @@ local conditions = {
 	max_heat				= 35,
 	min_humidity		= 50,
 	max_humidity		= 65,
-	daylight				= 15,
+	indoors					= false,
 	not_biome				= {
 		"cold_desert",
 		"cold_desert_ocean",

@@ -7,7 +7,7 @@ local conditions = {
 	min_humidity		= 30,
 	max_humidity		= 40,
 	max_windspeed		= 2,
-	daylight				= 15,
+	indoors					= false,
 	has_biome				= {
 		"default",
 		"deciduous_forest",

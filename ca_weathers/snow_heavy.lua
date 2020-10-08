@@ -5,7 +5,7 @@ local conditions = {
 	max_height = regional_weather.settings.max_height,
 	max_heat				= 30,
 	min_humidity		= 65,
-	daylight				= 15,
+	indoors					= false,
 	not_biome				= {
 		"cold_desert",
 		"cold_desert_ocean",

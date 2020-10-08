@@ -14,7 +14,8 @@ if farming ~= nil and farming.mod == "redo" then
 			 max_height		= regional_weather.settings.max_height,
 			 min_humidity	= 55,
 			 min_heat			= 30,
-			 min_light		= 15
+			 daylight			= 15,
+			 indoors			= false
 		 },
 
 	   action = function (pos, node, env)
@@ -35,7 +36,8 @@ else
 			 max_height		= regional_weather.settings.max_height,
 			 min_humidity	= 55,
 			 min_heat			= 30,
-			 min_light		= 15
+			 daylight			= 15,
+			 indoors			= false
 		 },
 
 	   action = function (pos, node, env)
