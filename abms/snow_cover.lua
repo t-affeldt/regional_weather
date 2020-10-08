@@ -1,5 +1,5 @@
 local BLOCK_PREFIX = "regional_weather:snow_cover_"
-local CHECK_DISTANCE = 3
+local CHECK_DISTANCE = 5
 local MAX_AMOUNT = 20
 
 local S = regional_weather.i18n
@@ -114,7 +114,7 @@ if regional_weather.settings.snow_griefing then
 		},
 		neighbors	= { "air" },
 		interval	= 25,
-		chance		= 30,
+		chance		= 120,
 		catch_up	= false,
 
 		 conditions	= {
@@ -157,16 +157,14 @@ if regional_weather.settings.snow_griefing then
 	})
 end
 
+local chance = 50
+if regional_weather.settings.snow_griefing then chance = 30 end
 climate_api.register_abm({
 	label			= "melt snow covers",
 	nodenames	= { "group:weather_snow_cover" },
-	interval	= 15,
-	chance		= 4,
+	interval	= 25,
+	chance		= chance,
 	catch_up	= true,
-
-	 conditions	= {
-		 min_heat = 30
-	 },
 
    action = function (pos, node, env)
 			local value = minetest.get_item_group(node.name, "weather_snow_cover")

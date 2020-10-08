@@ -144,13 +144,11 @@ climate_api.register_abm({
 climate_api.register_abm({
 	label = "remove rain puddles",
 	nodenames	= { "group:weather_puddle" },
-	interval	= 10,
-	chance		= 3,
+	interval	= 25,
+	chance		= 30,
 	catch_up	= true,
 
 	action = function (pos, node, env)
-		if env.humidity < 55 then
-			minetest.remove_node(pos)
-    end
+		minetest.remove_node(pos)
 	end
 })

@@ -17,7 +17,8 @@ regional_weather_ice (Freeze river water) bool true
 regional_weather_puddles (Place rain puddles) bool true
 
 # If set to true, puddles will be marked as water and hydrate farmland.
-regional_weather_puddles_water (Hydrate farmland near puddles) bool true
+# Not compatible with some ambient sound or mob mods
+regional_weather_puddles_water (Hydrate farmland near puddles) bool false
 
 # If set to true, rain will cause dry farmland to turn wet.
 regional_weather_soil (Hydrate farmland during rain) bool true
