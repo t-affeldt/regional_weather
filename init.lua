@@ -34,13 +34,14 @@ regional_weather.settings.min_height		= get_setting_number("min_height", -50)
 regional_weather.settings.cloud_height	= get_setting_number("cloud_height", 120)
 regional_weather.settings.cloud_scale		= get_setting_number("cloud_scale", 40)
 
-regional_weather.i18n = minetest.get_translator("regional_weather")
+local S = minetest.get_translator("regional_weather")
+regional_weather.i18n = S
 
 -- warn about clouds being overriden by MTG weather
 if climate_mod.settings.skybox
 and minetest.get_modpath("weather")
 and get_setting_bool("enable_weather", true, true) then
-	minetest.log("warning", "[Regional Weather] " .. S("Disable MTG weather for the best experience"))
+	minetest.log("warning", "[Regional Weather] " .. S("Disable MTG weather for the best experience. Check the forum for more information."))
 end
 
 -- import individual weather types
