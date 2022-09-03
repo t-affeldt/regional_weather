@@ -20,7 +20,7 @@ minetest.register_node(BLOCK_NAME, {
 	},
 	freezemelt = "default:river_water_source",
 	sounds = default.node_sound_glass_defaults(),
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	drop = "",
 	on_destruct = function(pos)
 		-- asynchronous to avoid destruction loop
