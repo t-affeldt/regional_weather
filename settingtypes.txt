@@ -1,7 +1,7 @@
 [Features]
 
 # If set to true, wind will boost or penalize player movements based on direction.
-regional_weather_player_speed (Change movement speed based on wind) bool true
+regional_weather_player_speed (Change movement speed based on wind) bool false
 
 # If set to true, snow layers will stack up during snowy weather.
 regional_weather_snow_layers (Place snow layers) bool true

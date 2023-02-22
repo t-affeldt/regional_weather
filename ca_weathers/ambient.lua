@@ -12,19 +12,45 @@ local function calc_cloud_height(heat, humidity, dewpoint)
 	return base + climate_api.utility.rangelim(variation, -scale, scale)
 end
 
+-- maps range of 0 to 1 to any other range
+local function map_range(val, low, high)
+	return (val + low) * (high - low)
+end
+
 local function generate_effects(params)
 	local override = {}
 
+	local cloud_density = climate_api.utility.rangelim(params.humidity / 100, 0.15, 0.65)
+	local cloud_thickness = climate_api.utility.rangelim(params.base_humidity * 0.2, 1, 18)
 	local cloud_height = calc_cloud_height(params.heat, params.humidity, params.dewpoint)
 	local wind = climate_api.environment.get_wind({ x = 0, y = cloud_height, z = 0 })
 
+	-- diffuse shadows when cloudy
+	-- zero at density 0.65 and one at 0.15
+	local cloud_shadows = 1.075 - (cloud_density / 0.5)
+
+	-- diffuse shadows at dawn / dusk
+	-- 15 hours between dawn and dusk accoring to https://wiki.minetest.net/Time_of_day
+	local daylight_duration = 15 / 24
+	local daytime = climate_api.utility.rangelim(minetest.get_timeofday(), 0.1875, 0.8125)
+	-- zero at dawn / dusk and one at midday
+	local daytime_shadows = 1 - (math.abs(0.5 - daytime) * 2 / daylight_duration)
+
+	local shadow_intensity = map_range(cloud_shadows + daytime_shadows, 0.15, 0.5)
+	local light_saturation = map_range(cloud_shadows + daytime_shadows, 0.8, 1.2)
+
 	local skybox = {priority = 10}
 	skybox.cloud_data = {
-		density = climate_api.utility.rangelim(params.humidity / 100, 0.15, 0.65),
+		density = cloud_density,
 		speed = wind,
-		thickness = climate_api.utility.rangelim(params.base_humidity * 0.2, 1, 18),
+		thickness = cloud_thickness,
 		height = cloud_height,
 		ambient = "#0f0f1050"
+	}
+
+	skybox.light_data = {
+		shadow_intensity = shadow_intensity,
+		saturation = light_saturation
 	}
 
 	if params.height > -100 and params.humidity > 40 then
@@ -50,16 +76,19 @@ local function generate_effects(params)
 
 	override["climate_api:skybox"] = skybox
 
-	local movement = params.player:get_velocity()
-	local movement_direction
-	if (vector.length(movement) < 0.1) then
-		movement_direction = vector.new(0, 0, 0)
-	else
-		movement_direction = vector.normalize(movement)
+	if params.height > - 50 and not params.indoors then
+		local movement = params.player:get_velocity()
+		local movement_direction
+		if (vector.length(movement) < 0.1) then
+			movement_direction = vector.new(0, 0, 0)
+		else
+			movement_direction = vector.normalize(movement)
+		end
+		local vector_product = vector.dot(movement_direction, wind)
+		local movement_penalty = climate_api.utility.sigmoid(vector_product, 1.5, 0.15, 0.9) + 0.2
+		override["regional_weather:speed_buff"] = movement_penalty
 	end
-	local vector_product = vector.dot(movement_direction, wind)
-	local movement_penalty = climate_api.utility.sigmoid(vector_product, 1.5, 0.15, 0.9) + 0.2
-	override["regional_weather:speed_buff"] = movement_penalty
+	
 	return override
 end
 

@@ -53,7 +53,7 @@ for i = 1, VARIANT_COUNT do
 		local name = BLOCK_PREFIX .. i
 		local index = i
 		if i < 10 then index = "0" .. i end
-		local texture = "weather_puddle_" .. index .. ".png^[opacity:128"
+		local texture = "weather_puddle_" .. index .. ".png^[opacity:24"
 		if flip == 1 then
 			name = name .. "_flipped"
 			texture = texture .. "^[transformFX"

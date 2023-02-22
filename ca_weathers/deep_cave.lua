@@ -18,6 +18,10 @@ effects["climate_api:skybox"] = {
 	},
 	moon_data = { visible = false },
 	star_data = { visible = false },
+	light_data = {
+		shadow_intensity = 0,
+		saturation = 1
+	},
 	priority = 100
 }
 
