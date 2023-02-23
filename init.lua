@@ -37,13 +37,6 @@ regional_weather.settings.cloud_scale		= get_setting_number("cloud_scale", 40)
 local S = minetest.get_translator("regional_weather")
 regional_weather.i18n = S
 
--- warn about clouds being overriden by MTG weather
-if climate_mod.settings.skybox
-and minetest.get_modpath("weather")
-and get_setting_bool("enable_weather", true, true) then
-	minetest.log("warning", "[Regional Weather] " .. S("Disable MTG weather for the best experience. Check the forum for more information."))
-end
-
 -- import individual weather types
 dofile(modpath.."/ca_weathers/ambient.lua")
 dofile(modpath.."/ca_weathers/deep_cave.lua")
