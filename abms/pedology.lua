@@ -20,7 +20,7 @@ climate_api.register_abm({
 
 	action = function (pos, node, env)
 		local wetness = minetest.get_item_group(node.name, "wet") or 0
-		if wetness < 2 and env.humidity > 55 then
+		if wetness < 2 and env.humidity > 50 then
 			pedology.wetten(pos)
 		elseif wetness > 0 and wetness < 3 and env.humidity < 40 then
 			pedology.dry(pos)

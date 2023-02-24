@@ -1,14 +1,15 @@
 local name = "regional_weather:hail"
 
 local conditions = {
-	min_height			= regional_weather.settings.min_height,
-	max_height			= regional_weather.settings.max_height,
-	min_heat				= 30,
-	max_heat				= 45,
-	min_humidity		= 65,
-	min_windspeed		= 2.5,
-	indoors					= false,
-	not_biome				= {
+	min_height = regional_weather.settings.min_height,
+	max_height = regional_weather.settings.max_height,
+	min_heat = 30,
+	max_heat = 45,
+	min_humidity = 65,
+	min_biome_humidity = 26,
+	min_windspeed = 2.5,
+	indoors = false,
+	not_biome = {
 		"cold_desert",
 		"cold_desert_ocean",
 		"desert",

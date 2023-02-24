@@ -19,7 +19,7 @@ local function generate_effects(params)
 	local override = {}
 
 	override["climate_api:sound"]  = {
-		gain = math.min(intensity, 1.2)
+		gain = math.min(intensity, 1)
 	}
 
 	return climate_api.utility.merge_tables(effects, override)

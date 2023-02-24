@@ -109,12 +109,22 @@ climate_api.register_abm({
 	catch_up	= false,
 
 	 conditions	= {
-		 min_height		= regional_weather.settings.min_height,
-		 max_height		= regional_weather.settings.max_height,
-		 min_humidity	= 55,
-		 min_heat			= 30,
-		 daylight			= 15,
-		 indoors			= false
+		 min_height = regional_weather.settings.min_height,
+		 max_height = regional_weather.settings.max_height,
+		 min_heat = 35,
+		 min_humidity = 50,
+		 min_biome_humidity = 26,
+		 daylight = 15,
+		 indoors = false,
+		 not_biome = {
+			"cold_desert",
+			"cold_desert_ocean",
+			"desert",
+			"desert_ocean",
+			"sandstone_desert",
+			"sandstone_desert_ocean",
+			"tundra"
+		}
 	 },
 
 	 pos_override = function(pos)

@@ -12,8 +12,8 @@ if farming ~= nil and farming.mod == "redo" then
 		 conditions	= {
 			 min_height		= regional_weather.settings.min_height,
 			 max_height		= regional_weather.settings.max_height,
-			 min_humidity	= 55,
-			 min_heat			= 30,
+			 min_humidity	= 50,
+			 min_heat			= 35,
 			 daylight			= 15,
 			 indoors			= false
 		 },
@@ -34,8 +34,8 @@ else
 		 conditions	= {
 			 min_height		= regional_weather.settings.min_height,
 			 max_height		= regional_weather.settings.max_height,
-			 min_humidity	= 55,
-			 min_heat			= 30,
+			 min_humidity	= 50,
+			 min_heat			= 35,
 			 daylight			= 15,
 			 indoors			= false
 		 },

@@ -8,7 +8,16 @@ local conditions = {
 	max_windspeed = 2,
 	max_heat = 50,
 	min_time = 4 / 24,
-	max_time = 8 / 24
+	max_time = 8 / 24,
+	not_biome = {
+		"cold_desert",
+		"cold_desert_ocean",
+		"desert",
+		"desert_ocean",
+		"sandstone_desert",
+		"sandstone_desert_ocean",
+		"tundra"
+	}
 }
 
 local effects = {}

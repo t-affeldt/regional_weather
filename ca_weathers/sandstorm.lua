@@ -3,16 +3,11 @@ local name = "regional_weather:sandstorm"
 local conditions = {
 	min_height = regional_weather.settings.min_height,
 	max_height = regional_weather.settings.max_height,
-	min_heat				= 50,
-	max_humidity		= 25,
-	min_windspeed		= 4.5,
+	min_windspeed		= 3,
 	has_biome				= {
 		"cold_desert",
-		"cold_desert_ocean",
 		"desert",
-		"desert_ocean",
-		"sandstone_desert",
-		"sandstone_desert_ocean"
+		"sandstone_desert"
 	}
 }
 

@@ -21,7 +21,7 @@ local function generate_effects(params)
 	local override = {}
 
 	local cloud_density = climate_api.utility.rangelim(params.humidity / 100, 0.15, 0.65)
-	local cloud_thickness = climate_api.utility.rangelim(params.base_humidity * 0.2, 1, 18)
+	local cloud_thickness = climate_api.utility.rangelim(params.biome_humidity * 0.2, 1, 18)
 	local cloud_height = calc_cloud_height(params.heat, params.humidity, params.dewpoint)
 	local wind = climate_api.environment.get_wind({ x = 0, y = cloud_height, z = 0 })
 

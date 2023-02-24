@@ -3,11 +3,12 @@ local name = "regional_weather:snow"
 local conditions = {
 	min_height = regional_weather.settings.min_height,
 	max_height = regional_weather.settings.max_height,
-	max_heat				= 35,
-	min_humidity		= 50,
-	max_humidity		= 65,
-	indoors					= false,
-	not_biome				= {
+	max_heat = 35,
+	min_humidity = 50,
+	max_humidity = 65,
+	min_biome_humidity = 26,
+	indoors	 = false,
+	not_biome = {
 		"cold_desert",
 		"cold_desert_ocean",
 		"desert",

@@ -42,7 +42,7 @@ climate_api.register_abm({
 	 conditions	= {
 		 min_height		= regional_weather.settings.min_height,
 		 max_height		= regional_weather.settings.max_height,
-		 max_heat			= 25,
+		 max_heat			= 35,
 		 daylight			= 15,
 		 indoors			= false
 	 },
@@ -62,7 +62,7 @@ climate_api.register_abm({
 	 conditions	= {
 		 min_height		= regional_weather.settings.min_height,
 		 max_height		= regional_weather.settings.max_height,
-		 min_heat			= 40,
+		 min_heat			= 35,
 		 daylight			= 15,
 		 indoors			= false
 	 },

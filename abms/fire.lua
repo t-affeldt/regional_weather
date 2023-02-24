@@ -12,7 +12,8 @@ climate_api.register_abm({
 	 conditions	= {
 		 min_height		= regional_weather.settings.min_height,
 		 max_height		= regional_weather.settings.max_height,
-		 min_humidity	= 55,
+		 min_humidity	= 50,
+		 min_biome_humidity = 26,
 		 max_heat			= 85,
 		 daylight			= 15,
 		 indoors			= false

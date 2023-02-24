@@ -1,11 +1,21 @@
 local name = "regional_weather:rain_heavy"
 
 local conditions = {
-	min_height		= regional_weather.settings.min_height,
-	max_height		= regional_weather.settings.max_height,
-	min_heat			= 40,
-	min_humidity	= 65,
-	indoors				= false
+	min_height = regional_weather.settings.min_height,
+	max_height = regional_weather.settings.max_height,
+	min_heat = 40,
+	min_humidity = 65,
+	min_biome_humidity = 26,
+	indoors = false,
+	not_biome = {
+		"cold_desert",
+		"cold_desert_ocean",
+		"desert",
+		"desert_ocean",
+		"sandstone_desert",
+		"sandstone_desert_ocean",
+		"tundra"
+	}
 }
 
 local effects = {}

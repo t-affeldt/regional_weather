@@ -70,11 +70,12 @@ climate_api.register_abm({
 	catch_up	= false,
 
 	 conditions	= {
-		 min_height		= regional_weather.settings.min_height,
-		 max_height		= regional_weather.settings.max_height,
-		 min_humidity	= 55,
-		 max_heat			= 30,
-		 not_biome		= {
+		 min_height = regional_weather.settings.min_height,
+		 max_height = regional_weather.settings.max_height,
+		 max_heat = 35,
+		 min_humidity = 50,
+		 min_biome_humidity = 26,
+		 not_biome = {
 			"cold_desert",
 			"cold_desert_ocean",
 			"desert",
