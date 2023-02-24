@@ -87,7 +87,6 @@ The entire source code is available on [Github](https://github.com/t-affeldt/reg
 - Light Rain sounds: *CC BY 3.0* by Arctura from https://freesound.org/people/Arctura/sounds/34065/
 - Wind sound: *CC BY (3.0)* by InspectorJ from https://freesound.org/people/InspectorJ/sounds/376415/
 - Hail sound: *CC0* by ikayuka from https://freesound.org/people/ikayuka/sounds/240742/
-- Puddle footstep sound: *CC0* by swordofkings128 from https://freesound.org/people/swordofkings128/sounds/398032/
 
 ### HUD Overlays
 - Frost HUD: *CC BY-SA (3.0)* by Cap

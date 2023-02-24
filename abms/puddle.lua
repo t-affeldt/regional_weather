@@ -80,13 +80,7 @@ for i = 1, VARIANT_COUNT do
 				water = apply_water_group,
 				weather_puddle = 1
 			},
-			drop = "",
-			sounds = {
-				footstep = {
-					name = "weather_puddle",
-					gain = 0.8
-				}
-			}
+			drop = ""
 		})
 	end
 end

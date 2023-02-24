@@ -3,17 +3,26 @@ local name = "regional_weather:fog"
 local conditions = {
 	min_height = regional_weather.settings.min_height,
 	max_height = regional_weather.settings.max_height,
-	min_humidity = 40,
+	min_humidity = 25,
 	max_humidity = 50,
 	max_windspeed = 2,
-	min_heat = 40,
-	max_heat = 50
+	max_heat = 50,
+	min_time = 4 / 24,
+	max_time = 8 / 24
 }
 
 local effects = {}
 
+effects["climate_api:hud_overlay"] = {
+    file = "weather_hud_fog.png^[opacity:100",
+    z_index = -200,
+    color_correction = true
+}
+
 effects["climate_api:skybox"] = {
 	sky_data = {
+		type = "plain",
+		base_color = "#c0c0c08f",
 		clouds = true
 	},
 	cloud_data = {
@@ -21,6 +30,10 @@ effects["climate_api:skybox"] = {
 		color = "#ffffff80",
 		thickness = 40,
 		speed = {x=0,y=0,z=0}
+	},
+	light_data = {
+		shadow_intensity = 0.1,
+		saturation = 0.5
 	},
 	priority = 50
 }
