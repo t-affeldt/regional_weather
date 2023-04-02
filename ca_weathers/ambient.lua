@@ -36,8 +36,8 @@ local function generate_effects(params)
 	-- zero at dawn / dusk and one at midday
 	local daytime_shadows = 1 - (math.abs(0.5 - daytime) * 2 / daylight_duration)
 
-	local shadow_intensity = map_range(cloud_shadows + daytime_shadows, 0.15, 0.5)
-	local light_saturation = map_range(cloud_shadows + daytime_shadows, 0.8, 1.2)
+	local shadow_intensity = map_range(cloud_shadows + daytime_shadows, 0.15, 0.4)
+	local light_saturation = map_range(cloud_shadows + daytime_shadows, 0.9, 1.1)
 
 	local skybox = {priority = 10}
 	skybox.cloud_data = {
@@ -88,7 +88,7 @@ local function generate_effects(params)
 		local movement_penalty = climate_api.utility.sigmoid(vector_product, 1.5, 0.15, 0.9) + 0.2
 		override["regional_weather:speed_buff"] = movement_penalty
 	end
-	
+
 	return override
 end
 
