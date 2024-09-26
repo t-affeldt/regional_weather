@@ -14,7 +14,7 @@ end
 
 -- maps range of 0 to 1 to any other range
 local function map_range(val, low, high)
-	return (val + low) * (high - low)
+	return val * (high - low) + low
 end
 
 local function generate_effects(params)
@@ -26,8 +26,8 @@ local function generate_effects(params)
 	local wind = climate_api.environment.get_wind({ x = 0, y = cloud_height, z = 0 })
 
 	-- diffuse shadows when cloudy
-	-- zero at density 0.65 and one at 0.15
-	local cloud_shadows = 1.075 - (cloud_density / 0.5)
+	-- cloud_shadows at zero at cloud density 0.65 and one at 0.15
+	local cloud_shadows = 1 - ((cloud_density - 0.15) / (0.65 - 0.15))
 
 	-- diffuse shadows at dawn / dusk
 	-- 15 hours between dawn and dusk accoring to https://wiki.minetest.net/Time_of_day
@@ -36,8 +36,8 @@ local function generate_effects(params)
 	-- zero at dawn / dusk and one at midday
 	local daytime_shadows = 1 - (math.abs(0.5 - daytime) * 2 / daylight_duration)
 
-	local shadow_intensity = map_range(cloud_shadows + daytime_shadows, 0.15, 0.4)
-	local light_saturation = map_range(cloud_shadows + daytime_shadows, 0.9, 1.1)
+	local shadow_intensity = map_range((cloud_shadows + daytime_shadows) / 2, 0.5, 2)
+	local light_saturation = map_range((cloud_shadows + daytime_shadows) / 2, 0.75, 1.25)
 
 	local skybox = {priority = 10}
 	skybox.cloud_data = {
